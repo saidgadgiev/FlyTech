@@ -1,7 +1,7 @@
 import sys
 
 import disein
-
+import doWorking
 import netmiko
 
 from PyQt5 import QtWidgets
@@ -13,24 +13,17 @@ class MyWindow(QtWidgets.QMainWindow):
         # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
         self.ui = disein.Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.connectBTN.clicked.connect(self.comm_huawei)
+        self.ui.interfBTN.clicked.connect(self.comm_huawei_f)
+        self.ip_address = self.ui.ipAddressEdit.text
+
         # self.ui.label_3.setText(self.btnTest())
 
     # Коммутатор Huawei
-    def comm_huawei(self):
-        huawei_router = {
-            'device_type': 'huawei',
-            'host': '10.30.111.10',
-            'username': 'admin',
-            'password': 'fufvtvyjy',
-            'secret': 'enablepass',
-            # 'port': 20,
-        }
-
-        ssh = netmiko.ConnectHandler(**huawei_router)
+    def comm_huawei_f(self):
+        ssh = doWorking.comm_huawei(self.ip_address)
+        ssh = netmiko.ConnectHandler(**ssh)
         result = ssh.send_command('dis int br')
-        self.ui.label_3.setText(result)
-        print(result)
+        self.ui.resultEdit.setText(result)
 
 
 if __name__ == "__main__":

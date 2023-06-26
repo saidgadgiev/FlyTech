@@ -1,8 +1,7 @@
 import sys
 
 import disein
-import doWorking
-import netmiko
+import switchboard_command
 
 from PyQt5 import QtWidgets
 
@@ -11,32 +10,25 @@ class MyWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
+        self.huawei = None
         self.ui = disein.Ui_MainWindow()
         self.ui.setupUi(self)
-
-        self.ui.interfBTN.clicked.connect(self.comm_huawei_interf)  # кнопка просмотр портов
-        self.ui.listMacBTN.clicked.connect(self.comm_huawei_listMac)  # Кнопка список маков
+        self.ip_address = self.ui.ipAddressEdit.text  # IP адресс из строки ввода
+        self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов
+        self.ui.listMacBTN.clicked.connect(self.listMac)  # Кнопка список маков
         # self.ui.serchMacBTN.clicked.connect()  # кнопка поиск по маку
-
-        self.ip_address = self.ui.ipAddressEdit.text
-
         # self.ui.label_3.setText(self.btnTest())
 
-    # Коммутатор Huawei просмотр интерфейсов
-    def comm_huawei_interf(self):
-        ssh = doWorking.comm_huawei(self.ip_address)
-        ssh = netmiko.ConnectHandler(**ssh)
-        result = ssh.send_command('dis int br')
-        # print("ssh1")
-        self.ui.resultEdit.setText(result)
+    # просмотр интерфейсов
+    def switchbord_interf(self):
+        self.huawei = switchboard_command.SwitchbordHuawei.interf(self, self.ip_address)
+        # print(self.huawei)
+        self.ui.resultEdit.setText(self.huawei)
 
-    # Коммутатор Huawei просмотр маков
-    def comm_huawei_listMac(self):
-        ssh = doWorking.comm_huawei(self.ip_address)
-        ssh = netmiko.ConnectHandler(**ssh)
-        result = ssh.send_command('display mac-address')
-        # print(result)
-        self.ui.resultEdit.setText(result)
+    def listMac(self):
+        self.huawei = switchboard_command.SwitchbordHuawei.listMac(self, self.ip_address)
+        # print(self.huawei)
+        self.ui.resultEdit.setText(self.huawei)
 
 
 if __name__ == "__main__":

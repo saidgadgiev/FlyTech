@@ -10,7 +10,6 @@ class MyWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
-        self.huawei = None
         self.ui = disein.Ui_MainWindow()
         self.ui.setupUi(self)
         self.ip_address = self.ui.ipAddressEdit.text  # IP адресс из строки ввода
@@ -21,14 +20,14 @@ class MyWindow(QtWidgets.QMainWindow):
 
     # просмотр интерфейсов
     def switchbord_interf(self):
-        self.huawei = switchboard_command.SwitchbordHuawei.interf(self, self.ip_address)
+        huawei = switchboard_command.interfHuawei(self.ip_address)
         # print(self.huawei)
-        self.ui.resultEdit.setText(self.huawei)
+        self.ui.resultEdit.setText(huawei)
 
     def listMac(self):
-        self.huawei = switchboard_command.SwitchbordHuawei.listMac(self, self.ip_address)
+        huawei = switchboard_command.listMacHuawei(self.ip_address)
         # print(self.huawei)
-        self.ui.resultEdit.setText(self.huawei)
+        self.ui.resultEdit.setText(huawei)
 
 
 if __name__ == "__main__":

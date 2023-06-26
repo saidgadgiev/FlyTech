@@ -1,4 +1,4 @@
 .gitignore
-main.spec
 build/
 dist/
+main.spec

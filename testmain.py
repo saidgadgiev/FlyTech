@@ -1,7 +1,7 @@
 import sys
 
 import disein
-import doWorking
+import doСonnection
 import netmiko
 
 from PyQt5 import QtWidgets

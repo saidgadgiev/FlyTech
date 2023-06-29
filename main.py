@@ -16,6 +16,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов
         self.ui.listMacBTN.clicked.connect(self.listMac)  # Кнопка список маков
         # self.ui.serchMacBTN.clicked.connect()  # кнопка поиск по маку
+        self.ui.listVlanBTN.clicked.connect(self.listVlan)
         # self.ui.label_3.setText(self.btnTest())
 
     # просмотр интерфейсов
@@ -26,6 +27,11 @@ class MyWindow(QtWidgets.QMainWindow):
 
     def listMac(self):
         huawei = switchboard_command.listMacHuawei(self.ip_address)
+        # print(self.huawei)
+        self.ui.resultEdit.setText(huawei)
+
+    def listVlan(self):
+        huawei = switchboard_command.listVlanHuawei(self.ip_address)
         # print(self.huawei)
         self.ui.resultEdit.setText(huawei)
 

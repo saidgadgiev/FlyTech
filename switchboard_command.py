@@ -1,20 +1,27 @@
 import netmiko
 
-import doWorking
+import doСonnection
 
 
 # Коммутатор Huawei просмотр интерфейсов
 def interfHuawei(ip_address):
-    # print(ip_address())
-    ssh = doWorking.comm_huawei(ip_address)
-    ssh = netmiko.ConnectHandler(**ssh)
-    result = ssh.send_command('dis int br')
+    ssh = doСonnection.comm_huawei(ip_address)
+    ssh1 = netmiko.ConnectHandler(**ssh)
+    result = ssh1.send_command('display interface brief')
     return result
 
 
 # Коммутатор Huawei просмотр маков
 def listMacHuawei(ip_address):
-    ssh = doWorking.comm_huawei(ip_address)
-    ssh = netmiko.ConnectHandler(**ssh)
-    result = ssh.send_command('display mac-address')
+    ssh = doСonnection.comm_huawei(ip_address)
+    ssh1 = netmiko.ConnectHandler(**ssh)
+    result = ssh1.send_command('display mac-address')
+    return result
+
+
+# Просмотр ВЛАНОВ Huawei
+def listVlanHuawei(ip_address):
+    ssh = doСonnection.comm_huawei(ip_address)
+    ssh1 = netmiko.ConnectHandler(**ssh)
+    result = ssh1.send_command('display vlan')
     return result

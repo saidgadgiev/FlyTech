@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>970</width>
+    <width>993</width>
     <height>600</height>
    </rect>
   </property>
@@ -126,6 +126,19 @@
             </property>
            </widget>
           </item>
+          <item row="3" column="0">
+           <widget class="QPushButton" name="infoPortBTN">
+            <property name="minimumSize">
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Инфо о порте</string>
+            </property>
+           </widget>
+          </item>
           <item row="3" column="1">
            <widget class="QPushButton" name="serchMacBTN">
             <property name="minimumSize">
@@ -139,7 +152,14 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="4" column="1">
+           <widget class="QPushButton" name="macPortBTN">
+            <property name="text">
+             <string>Мак на порту</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
            <widget class="QPushButton" name="listVlanBTN">
             <property name="minimumSize">
              <size>
@@ -149,6 +169,58 @@
             </property>
             <property name="text">
              <string>Просмотр Vlan</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QPushButton" name="noShundownPortBTN">
+            <property name="minimumSize">
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Включ.Порт</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QPushButton" name="shundownPortBTN">
+            <property name="minimumSize">
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Выкл.Порт</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="checkPortBTN">
+            <property name="minimumSize">
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Диан.Порта</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QPushButton" name="disThisBTN">
+            <property name="minimumSize">
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Отобр порта</string>
             </property>
            </widget>
           </item>

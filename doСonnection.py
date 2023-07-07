@@ -3,8 +3,8 @@ def comm_huawei(ip_address):
     huawei_router = {
         'device_type': 'huawei',
         'host': ip_address(),
-        'username': 'admin',
-        'password': 'fufvtvyjy',
+        'username': '******',
+        'password': '*******',
         'secret': 'enablepass',
         # 'port': 20,
     }

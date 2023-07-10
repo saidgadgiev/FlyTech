@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(966, 600)
+        MainWindow.resize(917, 600)
         MainWindow.setMinimumSize(QtCore.QSize(800, 600))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -41,6 +41,19 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.ipAddressEdit)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
+        self.label_4 = QtWidgets.QLabel(self.widget_5)
+        self.label_4.setObjectName("label_4")
+        self.horizontalLayout_2.addWidget(self.label_4)
+        self.loginEdit = QtWidgets.QLineEdit(self.widget_5)
+        self.loginEdit.setText("")
+        self.loginEdit.setObjectName("loginEdit")
+        self.horizontalLayout_2.addWidget(self.loginEdit)
+        self.label_5 = QtWidgets.QLabel(self.widget_5)
+        self.label_5.setObjectName("label_5")
+        self.horizontalLayout_2.addWidget(self.label_5)
+        self.passwordEdit = QtWidgets.QLineEdit(self.widget_5)
+        self.passwordEdit.setObjectName("passwordEdit")
+        self.horizontalLayout_2.addWidget(self.passwordEdit)
         self.verticalLayout.addWidget(self.widget_5)
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName("tabWidget")
@@ -214,13 +227,15 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_2.setText(_translate("MainWindow", "Введите IP "))
+        self.label_4.setText(_translate("MainWindow", "Логин"))
+        self.label_5.setText(_translate("MainWindow", "Пароль"))
         self.label.setText(_translate("MainWindow", "Выбор модели "))
         self.interfBTN.setText(_translate("MainWindow", "Просм портов"))
         self.listMacBTN.setText(_translate("MainWindow", "Список Маков"))

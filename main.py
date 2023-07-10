@@ -13,6 +13,10 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui = disein.Ui_MainWindow()
         self.ui.setupUi(self)
         self.ip_address = self.ui.ipAddressEdit.text  # IP адресс из строки ввода
+        self.login = self.ui.loginEdit.text  # Ввод логина
+        self.password = self.ui.passwordEdit.text  # ввод пароля
+
+        # Коммутатор Huawei
         # self.ui.connectBTN.clicked.connect(self.connectSwichbord)  # Подключение к комм
         self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов
         self.ui.listMacBTN.clicked.connect(self.listMac)  # Кнопка список маков
@@ -24,6 +28,9 @@ class MyWindow(QtWidgets.QMainWindow):
         # self.ui.checkPortBTN.clicked.connect(self.checkPort)  # Диагностика порта
         self.ui.disThisBTN.clicked.connect(self.disThisPort)  # что прописанно на порту
         # self.ui.label_3.setText(self.btnTest())
+
+        # Коммутатор D-Link
+        self.ui.interfBTN_2.clicked.connect(self.switchbord_interf_DLink)  # кнопка просмотр портов
 
     # Диалоговое окно с получением значения число
     def inputDialog(self):
@@ -41,49 +48,54 @@ class MyWindow(QtWidgets.QMainWindow):
             le.setText(str(text))
             return text
 
-    # просмотр интерфейсов
+    # просмотр интерфейсов Huawei
     def switchbord_interf(self):
-        huawei = switchboard_command.interfHuawei(self.ip_address)
+        huawei = switchboard_command.interfHuawei(self.ip_address, self.login, self.password)
         self.ui.resultEdit.setText(huawei)
 
-    # список маков
+        # просмотр интерфейсов D-Link
+    def switchbord_interf_DLink(self):
+        dlink = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
+        self.ui.resultEdit.setText(dlink)
+
+    # список маков Huawei
     def listMac(self):
-        huawei = switchboard_command.listMacHuawei(self.ip_address)
+        huawei = switchboard_command.listMacHuawei(self.ip_address, self.login, self.password)
         self.ui.resultEdit.setText(huawei)
 
-    # Просмотр вланов
+    # Просмотр вланов Huawei
     def listVlan(self):
-        huawei = switchboard_command.listVlanHuawei(self.ip_address)
+        huawei = switchboard_command.listVlanHuawei(self.ip_address, self.login, self.password)
         self.ui.resultEdit.setText(huawei)
 
-    # Информация о порте
+    # Информация о порте Huawei
     def infoPort(self):
         port = self.inputDialog()
-        huawei = switchboard_command.infoPortHuawei(self.ip_address, port)
+        huawei = switchboard_command.infoPortHuawei(self.ip_address, port, self.login, self.password)
         self.ui.resultEdit.setText(huawei)
 
-    # Поиск по маку
+    # Поиск по маку Huawei
     def serchMacAddress(self):
         macAddress = self.inputStrDialog()
-        huawei = switchboard_command.serchMacAddressHuawei(self.ip_address, macAddress)
+        huawei = switchboard_command.serchMacAddressHuawei(self.ip_address, macAddress, self.login, self.password)
         self.ui.resultEdit.setText(huawei)
 
-    # Маки на порту
+    # Маки на порту Huawei
     def macAboutPort(self):
         port = self.inputDialog()
-        huawei = switchboard_command.maccAboutPortHuawei(self.ip_address, port)
+        huawei = switchboard_command.maccAboutPortHuawei(self.ip_address, port, self.login, self.password)
         self.ui.resultEdit.setText(huawei)
 
-    # Диагномтика порта
+    # Диагномтика порта Huawei
     def checkPort(self):
         port = self.inputDialog()
-        huawei = switchboard_command.checkPortHuawei(self.ip_address, port)
+        huawei = switchboard_command.checkPortHuawei(self.ip_address, port, self.login, self.password)
         self.ui.resultEdit.setText(huawei)
 
-    # Чтот прописанно на порту
+    # Чтот прописанно на порту Huawei
     def disThisPort(self):
         port = self.inputDialog()
-        huawei = switchboard_command.disThisPortHuawei(self.ip_address, port)
+        huawei = switchboard_command.disThisPortHuawei(self.ip_address, port, self.login, self.password)
         self.ui.resultEdit.setText(huawei)
 
 

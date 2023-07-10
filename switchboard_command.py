@@ -3,17 +3,25 @@ import netmiko
 import doСonnection
 
 
-# # Коммутатор Huawei просмотр интерфейсов
-def interfHuawei(ip_address):
-    ssh = doСonnection.comm_huawei(ip_address)
+# Коммутатор Huawei просмотр интерфейсов
+def interfHuawei(ip_address, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
+    ssh = netmiko.ConnectHandler(**ssh)
+    result = ssh.send_command('display interface brief')
+    return result
+
+
+# Коммутатор D-Link просмотр интерфейсов
+def interfDLink(ip_address, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
     ssh = netmiko.ConnectHandler(**ssh)
     result = ssh.send_command('display interface brief')
     return result
 
 
 # Коммутатор Huawei просмотр маков
-def listMacHuawei(ip_address):
-    ssh = doСonnection.comm_huawei(ip_address)
+def listMacHuawei(ip_address, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
     ssh1 = netmiko.ConnectHandler(**ssh)
     command = 'display mac-address'
     result = ssh1.send_command(command)
@@ -21,16 +29,16 @@ def listMacHuawei(ip_address):
 
 
 # Просмотр ВЛАНОВ Huawei
-def listVlanHuawei(ip_address):
-    ssh = doСonnection.comm_huawei(ip_address)
+def listVlanHuawei(ip_address, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
     ssh1 = netmiko.ConnectHandler(**ssh)
     result = ssh1.send_command('display vlan')
     return result
 
 
 # Просмотр информации о порте
-def infoPortHuawei(ip_address, port):
-    ssh = doСonnection.comm_huawei(ip_address)
+def infoPortHuawei(ip_address, port, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
     ssh1 = netmiko.ConnectHandler(**ssh)
     command = 'display interface Ethernet 0/0/' + str(port)
     result = ssh1.send_command(command)
@@ -38,8 +46,8 @@ def infoPortHuawei(ip_address, port):
 
 
 # Поиск по макадрессу
-def serchMacAddressHuawei(ip_address, macc):
-    ssh = doСonnection.comm_huawei(ip_address)
+def serchMacAddressHuawei(ip_address, macc, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
     ssh1 = netmiko.ConnectHandler(**ssh)
     command = 'display mac-address ' + macc
     # print(command)
@@ -48,8 +56,8 @@ def serchMacAddressHuawei(ip_address, macc):
 
 
 # Маки на порту
-def maccAboutPortHuawei(ip_address, port):
-    ssh = doСonnection.comm_huawei(ip_address)
+def maccAboutPortHuawei(ip_address, port, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
     ssh1 = netmiko.ConnectHandler(**ssh)
     command = 'display mac-address dynamic Ethernet 0/0/' + str(port)
     # print(command)
@@ -58,8 +66,8 @@ def maccAboutPortHuawei(ip_address, port):
 
 
 # Диагностика порта
-def checkPortHuawei(ip_address, port):
-    ssh = doСonnection.comm_huawei(ip_address)
+def checkPortHuawei(ip_address, port, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
     ssh1 = netmiko.ConnectHandler(**ssh)
     command = [
         'system-view',
@@ -73,8 +81,8 @@ def checkPortHuawei(ip_address, port):
 
 
 # Что прописанно на порту
-def disThisPortHuawei(ip_address, port):
-    ssh = doСonnection.comm_huawei(ip_address)
+def disThisPortHuawei(ip_address, port, login, password):
+    ssh = doСonnection.comm_huawei(ip_address, login, password)
     print(1)
     ssh1 = netmiko.ConnectHandler(**ssh)
     command = [

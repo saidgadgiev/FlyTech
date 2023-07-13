@@ -2,7 +2,6 @@ import sys
 from PyQt5.QtWidgets import (QWidget, QPushButton, QLineEdit, QInputDialog, QApplication)
 import disein
 import switchboard_command
-
 from PyQt5 import QtWidgets
 
 
@@ -20,7 +19,7 @@ class MyWindow(QtWidgets.QMainWindow):
         # self.ui.connectBTN.clicked.connect(self.connectSwichbord)  # Подключение к комм
         self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов
         self.ui.listMacBTN.clicked.connect(self.listMac)  # Кнопка список маков
-        # self.ui.serchMacBTN.clicked.connect()  # кнопка поиск по маку
+        # self.ui.shundownPortBTN.clicked.connect()  # кнопка поиск по маку
         self.ui.listVlanBTN.clicked.connect(self.listVlan)  # Просмотр вланов
         self.ui.infoPortBTN.clicked.connect(self.infoPort)  # информация о порте
         self.ui.serchMacBTN.clicked.connect(self.serchMacAddress)  # поиск по маку

@@ -1,36 +1,26 @@
-import sys
-
-import disein
-import doСonnection
 import netmiko
+from pprint import pprint
 
-from PyQt5 import QtWidgets
-
-
-class MyWindow(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
-        # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
-        self.ui = disein.Ui_MainWindow()
-        self.ui.setupUi(self)
-        self.ui.interfBTN.clicked.connect(self.comm_huawei_f)
-        self.ip_address = self.ui.ipAddressEdit.text
-
-        # self.ui.label_3.setText(self.btnTest())
-
-    # Коммутатор Huawei
-    def comm_huawei_f(self):
-        ssh = doWorking.comm_huawei(self.ip_address)
-        ssh = netmiko.ConnectHandler(**ssh)
-        result = ssh.send_command('dis int br')
-        # result = doWorking.comm_huawei(self.ip_address)
-        # print(result)
-        # self.ui.ResultEdit.setText(self.ip_address())
-        self.ui.resultEdit.setText(result)
+def send_show_command(device, commands):
+    res = {}
+    try:
+        with netmiko.ConnectHandler(**device) as ssh:
+            ssh.enable()
+            for command in commands:
+                output = ssh.send_command(command)
+                res[command] = output
+            return res
+    except (netmiko.NetmikoTimeoutException, netmiko.NetmikoAuthenticationException) as error:
+        print(error)
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    window = MyWindow()
-    window.show()
-    sys.exit(app.exec_())
+    device = {
+        "device_type": "dlink_ds_telnet",
+        "host": "10.155.207.13",
+        "username": "admin",
+        "password": "fufvtvyjy",
+        "port": 23,
+    }
+    result = send_show_command(device, ["show fdb"])
+    pprint(result, width=120)

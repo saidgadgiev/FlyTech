@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import (QWidget, QPushButton, QLineEdit, QInputDialog, QApplication)
+from PyQt5.QtWidgets import (QLineEdit, QInputDialog)
 import disein
 import switchboard_command
 from PyQt5 import QtWidgets
@@ -50,6 +50,7 @@ class MyWindow(QtWidgets.QMainWindow):
     # просмотр интерфейсов Huawei
     def switchbord_interf(self):
         huawei = switchboard_command.interfHuawei(self.ip_address, self.login, self.password)
+        print(huawei)
         self.ui.resultEdit.setText(huawei)
 
         # просмотр интерфейсов D-Link

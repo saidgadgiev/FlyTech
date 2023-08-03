@@ -1,26 +1,32 @@
 import netmiko
 from pprint import pprint
 
-def send_show_command(device, commands):
+
+def send_show_command(devices, commands):
     res = {}
     try:
-        with netmiko.ConnectHandler(**device) as ssh:
+        with netmiko.ConnectHandler(**devices) as ssh:
             ssh.enable()
             for command in commands:
                 output = ssh.send_command(command)
                 res[command] = output
             return res
-    except (netmiko.NetmikoTimeoutException, netmiko.NetmikoAuthenticationException) as error:
-        print(error)
+    except netmiko.NetmikoTimeoutException:
+        print("Не удалось установить TCP-соединение с устройством.\n"
+              "Распространенными причинами этой проблемы являются:\n"
+              "1. Неверное имя хоста или IP-адрес.\n"
+              "2. Неправильный TCP-порт.\n"
+              "3. Промежуточный брандмауэр, блокирующий доступ.\n")
 
 
 if __name__ == "__main__":
     device = {
-        "device_type": "dlink_ds_telnet",
-        "host": "10.155.207.13",
+        "device_type": "huawei",
+        "host": "10.50.57.1",
         "username": "admin",
         "password": "fufvtvyjy",
-        "port": 23,
+        # 'secret': 'enablepass',
+        # "port": 20,
     }
-    result = send_show_command(device, ["show fdb"])
+    result = send_show_command(device, ['display mac-address'])
     pprint(result, width=120)

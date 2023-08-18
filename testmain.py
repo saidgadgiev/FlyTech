@@ -21,12 +21,13 @@ def send_show_command(devices, commands):
 
 if __name__ == "__main__":
     device = {
-        "device_type": "huawei",
-        "host": "10.50.57.1",
+        "device_type": "zte_zxros_telnet",
+        "host": "10.155.204.11",
         "username": "admin",
-        "password": "fufvtvyjy",
-        # 'secret': 'enablepass',
-        # "port": 20,
+        "password": "P@ntera2i7",
+        "secret": "P@ntera2i7",
+        # "port": 23,
     }
-    result = send_show_command(device, ['display mac-address'])
+    command = ['show mac']
+    result = send_show_command(device, command)
     pprint(result, width=120)

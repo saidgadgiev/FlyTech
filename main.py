@@ -49,54 +49,80 @@ class MyWindow(QtWidgets.QMainWindow):
 
     # просмотр интерфейсов Huawei
     def switchbord_interf(self):
-        huawei = switchboard_command.interfHuawei(self.ip_address, self.login, self.password)
-        print(huawei)
-        self.ui.resultEdit.setText(huawei)
+        if 0 < len(self.ip_address()):
+            huawei = switchboard_command.interfHuawei(self.ip_address, self.login, self.password)
+            self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
         # просмотр интерфейсов D-Link
     def switchbord_interf_DLink(self):
-        dlink = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
-        self.ui.resultEdit.setText(dlink)
+        if 0 < len(self.ip_address()):
+            dlink = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit.setText(dlink)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
     # список маков Huawei
     def listMac(self):
-        huawei = switchboard_command.listMacHuawei(self.ip_address, self.login, self.password)
-        self.ui.resultEdit.setText(huawei)
+        if 0 < len(self.ip_address()):
+            huawei = switchboard_command.listMacHuawei(self.ip_address, self.login, self.password)
+            self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
     # Просмотр вланов Huawei
     def listVlan(self):
-        huawei = switchboard_command.listVlanHuawei(self.ip_address, self.login, self.password)
-        self.ui.resultEdit.setText(huawei)
+        if 0 < len(self.ip_address()):
+            huawei = switchboard_command.listVlanHuawei(self.ip_address, self.login, self.password)
+            self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
     # Информация о порте Huawei
     def infoPort(self):
-        port = self.inputDialog()
-        huawei = switchboard_command.infoPortHuawei(self.ip_address, port, self.login, self.password)
-        self.ui.resultEdit.setText(huawei)
+        if 0 < len(self.ip_address()):
+            port = self.inputDialog()
+            huawei = switchboard_command.infoPortHuawei(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
     # Поиск по маку Huawei
     def serchMacAddress(self):
-        macAddress = self.inputStrDialog()
-        huawei = switchboard_command.serchMacAddressHuawei(self.ip_address, macAddress, self.login, self.password)
-        self.ui.resultEdit.setText(huawei)
+        if 0 < len(self.ip_address()):
+            macAddress = self.inputStrDialog()
+            huawei = switchboard_command.serchMacAddressHuawei(self.ip_address, macAddress, self.login, self.password)
+            self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
     # Маки на порту Huawei
     def macAboutPort(self):
-        port = self.inputDialog()
-        huawei = switchboard_command.maccAboutPortHuawei(self.ip_address, port, self.login, self.password)
-        self.ui.resultEdit.setText(huawei)
+        if 0 < len(self.ip_address()):
+            port = self.inputDialog()
+            huawei = switchboard_command.maccAboutPortHuawei(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
     # Диагномтика порта Huawei
     def checkPort(self):
-        port = self.inputDialog()
-        huawei = switchboard_command.checkPortHuawei(self.ip_address, port, self.login, self.password)
-        self.ui.resultEdit.setText(huawei)
+        if 0 < len(self.ip_address()):
+            port = self.inputDialog()
+            huawei = switchboard_command.checkPortHuawei(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
     # Чтот прописанно на порту Huawei
     def disThisPort(self):
-        port = self.inputDialog()
-        huawei = switchboard_command.disThisPortHuawei(self.ip_address, port, self.login, self.password)
-        self.ui.resultEdit.setText(huawei)
+        if 0 < len(self.ip_address()):
+            port = self.inputDialog()
+            huawei = switchboard_command.disThisPortHuawei(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
 
 
 if __name__ == "__main__":

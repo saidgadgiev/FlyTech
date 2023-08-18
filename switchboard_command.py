@@ -18,7 +18,6 @@ def interfHuawei(ip_address, login, password):
         return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
                 "являются:\nНеверные имя пользователя и пароль")
 
-
 # Коммутатор D-Link просмотр интерфейсов
 def interfDLink(ip_address, login, password):
     res = {}
@@ -113,7 +112,6 @@ def maccAboutPortHuawei(ip_address, port, login, password):
         ssh = doСonnection.comm_huawei(ip_address, login, password)
         ssh1 = netmiko.ConnectHandler(**ssh)
         command = 'display mac-address dynamic Ethernet 0/0/' + str(port)
-        # print(command)
         result = ssh1.send_command(command)
         return result
     except netmiko.NetmikoTimeoutException:

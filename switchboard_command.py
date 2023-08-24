@@ -166,3 +166,41 @@ def disThisPortHuawei(ip_address, port, login, password):
     except netmiko.NetmikoAuthenticationException:
         return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
                 "являются:\nНеверные имя пользователя и пароль")
+
+# Отключение порта Huawei
+def shutdown_port(ip_address, port, login, password):
+    try:
+        ssh = doСonnection.comm_huawei(ip_address, login, password)
+        ssh1 = netmiko.ConnectHandler(**ssh)
+        command = ['system-view', 
+               'interface Ethernet 0/0/'+ str(port),
+               'shutdown']
+
+        result = ssh1.send_config_set(command)
+        return result
+    except netmiko.NetmikoTimeoutException:
+        return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+                "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+                "брандмауэр, блокирующий доступ.\n")
+    except netmiko.NetmikoAuthenticationException:
+        return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+                "являются:\nНеверные имя пользователя и пароль")
+    
+    # Включение порта Huawei
+def undo_shutdown_port(ip_address, port, login, password):
+    try:
+        ssh = doСonnection.comm_huawei(ip_address, login, password)
+        ssh1 = netmiko.ConnectHandler(**ssh)
+        command = ['system-view', 
+               'interface Ethernet 0/0/'+ str(port),
+               'undo shutdown']
+
+        result = ssh1.send_config_set(command)
+        return result
+    except netmiko.NetmikoTimeoutException:
+        return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+                "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+                "брандмауэр, блокирующий доступ.\n")
+    except netmiko.NetmikoAuthenticationException:
+        return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+                "являются:\nНеверные имя пользователя и пароль")

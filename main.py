@@ -19,13 +19,15 @@ class MyWindow(QtWidgets.QMainWindow):
         # self.ui.connectBTN.clicked.connect(self.connectSwichbord)  # Подключение к комм
         self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов
         self.ui.listMacBTN.clicked.connect(self.listMac)  # Кнопка список маков
-        # self.ui.shundownPortBTN.clicked.connect()  # кнопка поиск по маку
+        self.ui.shundownPortBTN.clicked.connect(self.shutdownPort)  # Отключение порта
+        self.ui.noShundownPortBTN.clicked.connect(self.noShutdownPort) # Включение порта
         self.ui.listVlanBTN.clicked.connect(self.listVlan)  # Просмотр вланов
         self.ui.infoPortBTN.clicked.connect(self.infoPort)  # информация о порте
         self.ui.serchMacBTN.clicked.connect(self.serchMacAddress)  # поиск по маку
         self.ui.macPortBTN.clicked.connect(self.macAboutPort)  # маки на порту
+        
         # self.ui.checkPortBTN.clicked.connect(self.checkPort)  # Диагностика порта
-        self.ui.disThisBTN.clicked.connect(self.disThisPort)  # что прописанно на порту
+        # self.ui.disThisBTN.clicked.connect(self.disThisPort)  # что прописанно на порту
         # self.ui.label_3.setText(self.btnTest())
 
         # Коммутатор D-Link
@@ -121,6 +123,24 @@ class MyWindow(QtWidgets.QMainWindow):
             port = self.inputDialog()
             huawei = switchboard_command.disThisPortHuawei(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit.setText(huawei)
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
+
+    # Отключение порта Huawei
+    def shutdownPort(self):
+        if 0 < len(self.ip_address()):
+            port = self.inputDialog()
+            huawei = switchboard_command.shutdown_port(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit.setText(f'Порт {port} отключен')
+        else:
+            self.ui.resultEdit.setText("Введите IP устройства")
+
+    # Включение порта Huawei
+    def noShutdownPort(self):
+        if 0 < len(self.ip_address()):
+            port = self.inputDialog()
+            huawei = switchboard_command.undo_shutdown_port(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit.setText(f'Порт {port} включен')
         else:
             self.ui.resultEdit.setText("Введите IP устройства")
 

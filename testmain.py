@@ -5,12 +5,9 @@ from pprint import pprint
 def send_show_command(devices, commands):
     res = {}
     try:
-        with netmiko.ConnectHandler(**devices) as ssh:
-            ssh.enable()
-            for command in commands:
-                output = ssh.send_command(command)
-                res[command] = output
-            return res
+        ssh = netmiko.ConnectHandler(**device)
+        res = ssh.send_config_set(commands)
+        print (res)
     except netmiko.NetmikoTimeoutException:
         print("Не удалось установить TCP-соединение с устройством.\n"
               "Распространенными причинами этой проблемы являются:\n"
@@ -21,13 +18,15 @@ def send_show_command(devices, commands):
 
 if __name__ == "__main__":
     device = {
-        "device_type": "zte_zxros_telnet",
-        "host": "10.155.204.11",
+        "device_type": "huawei",
+        "host": "10.50.57.11",
         "username": "admin",
-        "password": "P@ntera2i7",
-        "secret": "P@ntera2i7",
+        "password": "fufvtvyjy",
+        # "secret": "P@ntera2i7",
         # "port": 23,
     }
-    command = ['show mac']
+    command = ['system-view', 
+               'interface Ethernet 0/0/1',
+               'undo shutdown']
     result = send_show_command(device, command)
-    pprint(result, width=120)
+    # print(result)

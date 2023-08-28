@@ -18,15 +18,14 @@ def send_show_command(devices, commands):
 
 if __name__ == "__main__":
     device = {
-        "device_type": "huawei",
-        "host": "10.50.57.11",
+        "device_type": "dlink_ds",
+        "host": "10.155.207.13",
         "username": "admin",
         "password": "fufvtvyjy",
-        # "secret": "P@ntera2i7",
+        'conn_timeout': 40
+        # "secret": "fufvtvyjy",
         # "port": 23,
     }
-    command = ['system-view', 
-               'interface Ethernet 0/0/1',
-               'undo shutdown']
+    command = ['show fdb']
     result = send_show_command(device, command)
     # print(result)

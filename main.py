@@ -17,7 +17,8 @@ class MyWindow(QtWidgets.QMainWindow):
 
         # Коммутатор Huawei
         # self.ui.connectBTN.clicked.connect(self.connectSwichbord)  # Подключение к комм
-        self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов
+        self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов Huawei
+        self.ui.interfBTN_2.clicked.connect(self.switchbord_interf_dlink) # кнопка просмотр портов DLink
         self.ui.listMacBTN.clicked.connect(self.listMac)  # Кнопка список маков
         self.ui.shundownPortBTN.clicked.connect(self.shutdownPort)  # Отключение порта
         self.ui.noShundownPortBTN.clicked.connect(self.noShutdownPort) # Включение порта
@@ -30,8 +31,6 @@ class MyWindow(QtWidgets.QMainWindow):
         # self.ui.disThisBTN.clicked.connect(self.disThisPort)  # что прописанно на порту
         # self.ui.label_3.setText(self.btnTest())
 
-        # Коммутатор D-Link
-        self.ui.interfBTN_2.clicked.connect(self.switchbord_interf_DLink)  # кнопка просмотр портов
 
     # Диалоговое окно с получением значения число
     def inputDialog(self):
@@ -57,13 +56,14 @@ class MyWindow(QtWidgets.QMainWindow):
         else:
             self.ui.resultEdit.setText("Введите IP устройства")
 
-        # просмотр интерфейсов D-Link
-    def switchbord_interf_DLink(self):
+    # просмотр интерфейсов D-link
+    def switchbord_interf_dlink(self):
         if 0 < len(self.ip_address()):
-            dlink = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit.setText(dlink)
+            DLink = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_2.setText(DLink)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_2.setText("Введите IP устройства")
+
 
     # список маков Huawei
     def listMac(self):

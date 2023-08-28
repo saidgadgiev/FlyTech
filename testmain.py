@@ -18,13 +18,14 @@ def send_show_command(devices, commands):
 
 if __name__ == "__main__":
     device = {
-        "device_type": "dlink_ds_telnet",
-        "host": "10.50.115.1",
+        "device_type": "dlink_ds",
+        "host": "10.155.207.13",
         "username": "admin",
         "password": "fufvtvyjy",
-        "secret": "fufvtvyjy",
+        'conn_timeout': 40
+        # "secret": "fufvtvyjy",
         # "port": 23,
     }
-    command = ['show ?']
+    command = ['show fdb']
     result = send_show_command(device, command)
     # print(result)

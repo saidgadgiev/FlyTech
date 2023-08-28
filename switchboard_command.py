@@ -20,23 +20,18 @@ def interfHuawei(ip_address, login, password):
 
 # Коммутатор D-Link просмотр интерфейсов
 def interfDLink(ip_address, login, password):
-    res = {}
-    commands = "show fdb"
-    devices = doСonnection.comm_huawei(ip_address, login, password)
     try:
-        with netmiko.ConnectHandler(**devices) as telnet:
-            telnet.enable()
-            for command in commands:
-                output = telnet.send_command(command)
-                res[command] = output
-            print(res)
-    except (netmiko.NetmikoTimeoutException, netmiko.NetmikoAuthenticationException) as error:
-        print(error)
-
-    # ssh = doСonnection.comm_huawei(ip_address, login, password)
-    # ssh = netmiko.ConnectHandler(**ssh)
-    # result = ssh.send_command('display interface brief')
-    # return result
+        ssh = doСonnection.comm_dlink(ip_address, login, password)
+        ssh = netmiko.ConnectHandler(**ssh)
+        result = ssh.send_command('show ports')
+        return result
+    except netmiko.NetmikoTimeoutException:
+        return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+                "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+                "брандмауэр, блокирующий доступ.\n")
+    except netmiko.NetmikoAuthenticationException:
+        return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+                "являются:\nНеверные имя пользователя и пароль")
 
 
 # Коммутатор Huawei просмотр маков

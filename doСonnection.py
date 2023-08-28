@@ -1,6 +1,7 @@
 def comm_huawei(ip_address, login, password):
     huawei_router = {
-        'device_type': 'huawei', 'host': ip_address(),
+        'device_type': 'huawei', 
+        'host': ip_address(),
         'username': login(),
         'password': password(),
         'secret': 'enablepass',
@@ -10,12 +11,13 @@ def comm_huawei(ip_address, login, password):
 
 
 def comm_dlink(ip_address, login, password):
-    huawei_router = {
+    dlink_router = {
         'device_type': 'dlink_ds',
         'host': ip_address(),
         'username': login(),
         'password': password(),
+        'conn_timeout': 40
         # 'secret': 'enablepass',
-        'port': 23,
+        # 'port': 23,
     }
-    return huawei_router
+    return dlink_router

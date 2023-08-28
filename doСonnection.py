@@ -1,7 +1,6 @@
 def comm_huawei(ip_address, login, password):
     huawei_router = {
-        'device_type': 'huawei',
-        'host': ip_address(),
+        'device_type': 'huawei', 'host': ip_address(),
         'username': login(),
         'password': password(),
         'secret': 'enablepass',

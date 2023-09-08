@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\disein.ui'
+# Form implementation generated from reading ui file 'd:\PRG\FlyTech\disein.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -135,6 +135,9 @@ class Ui_MainWindow(object):
         self.shundownPortBTN.setMinimumSize(QtCore.QSize(105, 0))
         self.shundownPortBTN.setObjectName("shundownPortBTN")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.shundownPortBTN)
+        self.connectHuawei = QtWidgets.QPushButton(self.widget)
+        self.connectHuawei.setObjectName("connectHuawei")
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.SpanningRole, self.connectHuawei)
         self.horizontalLayout.addWidget(self.widget)
         self.resultEdit = QtWidgets.QTextEdit(self.widget_2)
         font = QtGui.QFont()
@@ -214,6 +217,9 @@ class Ui_MainWindow(object):
         self.disThisBTN_2.setMinimumSize(QtCore.QSize(105, 0))
         self.disThisBTN_2.setObjectName("disThisBTN_2")
         self.formLayout_2.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.disThisBTN_2)
+        self.connectDLink = QtWidgets.QPushButton(self.widget_4)
+        self.connectDLink.setObjectName("connectDLink")
+        self.formLayout_2.setWidget(6, QtWidgets.QFormLayout.SpanningRole, self.connectDLink)
         self.horizontalLayout_4.addWidget(self.widget_4)
         self.resultEdit_2 = QtWidgets.QTextEdit(self.widget_3)
         font = QtGui.QFont()
@@ -227,7 +233,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -247,6 +253,7 @@ class Ui_MainWindow(object):
         self.disThisBTN.setText(_translate("MainWindow", "Отобр порта"))
         self.noShundownPortBTN.setText(_translate("MainWindow", "Включ.Порт"))
         self.shundownPortBTN.setText(_translate("MainWindow", "Выкл.Порт"))
+        self.connectHuawei.setText(_translate("MainWindow", "Подключение"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabHuawei), _translate("MainWindow", "1.Huawei"))
         self.label_3.setText(_translate("MainWindow", "Выбор модели "))
         self.interfBTN_2.setText(_translate("MainWindow", "Просм портов"))
@@ -259,4 +266,5 @@ class Ui_MainWindow(object):
         self.checkPortBTN_2.setText(_translate("MainWindow", "Диан.Порта"))
         self.shundownPortBTN_2.setText(_translate("MainWindow", "Выкл.Порт"))
         self.disThisBTN_2.setText(_translate("MainWindow", "Отобр порта"))
+        self.connectDLink.setText(_translate("MainWindow", "Подключение"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabDLink), _translate("MainWindow", "2.D-Link"))

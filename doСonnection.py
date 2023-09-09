@@ -9,6 +9,7 @@ def comm_huawei(ip_address, login, password):
     }
     return huawei_router
 
+
 def comm_dlink(ip_address, login, password):
     dlink_router = {
         'device_type': 'dlink_ds',

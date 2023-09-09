@@ -1,27 +1,26 @@
 import netmiko
+import switchboard_command
+
 ip_address = input('Введите IP адресс -> ')
 login = input('Введите логин -> ')
 password = input('Введите пароль -> ')
-device = {
-    'device_type': 'dlink_ds',
-    'host': ip_address,
-    'username': login,
-    'password': password,
-    'conn_timeout': 40
-}
+device = switchboard_command.connectDlink(ip_address, login, password)
 ssh = None
 bol = True
 print("1. Подключить коммутатор")
 print("2. Просмотр интерфейсов")
 print("3. список маков")
 while bol == True:
-    comm = input('enter')
+    comm = input('enter -> ')
     if comm == "1":
-        ssh = netmiko.ConnectHandler(**device)
+        pass
+        # ssh = netmiko.ConnectHandler(**device)
     elif comm == "2":
-        print('two')
+        res = device.send_command("show ports")
+        print(res)
     elif comm == "3":
-        print('three')
+        res = device.send_command("show fdb")
+        print(res)
     else: 
         print("false")
         bol = False

@@ -3,9 +3,9 @@ import netmiko
 import doСonnection
 
 # Подключение к коммутатору Huawei
-def connectHuawei(ip_address, login, password):
+def connectDlink(ip_address, login, password):
     try:
-        ssh = doСonnection.comm_huawei(ip_address, login, password)
+        ssh = doСonnection.comm_dlink(ip_address, login, password)
         ssh = netmiko.ConnectHandler(**ssh)
         return ssh
     except netmiko.NetmikoTimeoutException:

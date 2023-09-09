@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import (QLineEdit, QInputDialog)
 import disein
+import netmiko
 import switchboard_command
 from PyQt5 import QtWidgets
 import doСonnection
@@ -59,8 +60,17 @@ class MyWindow(QtWidgets.QMainWindow):
     # Подключение к коммут DLink
     def connectDLink(self):
         if 0 < len(self.ip_address()):
-            # dlink = doСonnection.comm_dlink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_2.setText("dlink")
+            try:
+                ssh = doСonnection.comm_dlink(self.ip_address, self.login, self.password)
+                ssh = netmiko.ConnectHandler(**ssh)
+                return ssh
+            except netmiko.NetmikoTimeoutException:
+                return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+                        "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+                        "брандмауэр, блокирующий доступ.\n")
+            except netmiko.NetmikoAuthenticationException:
+                return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+                        "являются:\nНеверные имя пользователя и пароль")
         else:
             self.ui.resultEdit_2.setText("Введите IP устройства")
 
@@ -84,11 +94,8 @@ class MyWindow(QtWidgets.QMainWindow):
 
     # просмотр интерфейсов D-link
     def switchbord_interf_dlink(self):
-        if 0 < len(self.ip_address()):
-            DLink = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_2.setText(DLink)
-        else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+        res = self.connectDLink().send_command('show ports')
+        self.ui.resultEdit_2.setText(res)
 
 
     # список маков Huawei
@@ -102,11 +109,8 @@ class MyWindow(QtWidgets.QMainWindow):
         
     # список маков DLink
     def listMac_dlink(self):
-        if 0 < len(self.ip_address()):
-            dlink = switchboard_command.listMacDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_2.setText(dlink)
-        else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+        res = self.connectDLink().send_command('show fdb')
+        self.ui.resultEdit_2.setText(res)
 
     # Просмотр вланов Huawei
     def listVlan(self):

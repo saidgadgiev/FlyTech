@@ -35,11 +35,10 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.serchMacBTN_2.clicked.connect(self.serchMacAddressDl) # поиск по маку Dlink
         self.ui.macPortBTN.clicked.connect(self.macAboutPort)  # маки на порту Huawei
         self.ui.macPortBTN_2.clicked.connect(self.macAboutPortDl) # маки на порту Dlink
-
+        
         # self.ui.checkPortBTN.clicked.connect(self.checkPort)  # Диагностика порта
         # self.ui.disThisBTN.clicked.connect(self.disThisPort)  # что прописанно на порту
         # self.ui.label_3.setText(self.btnTest())
-
 
     # Диалоговое окно с получением значения число
     def inputDialog(self):
@@ -63,6 +62,7 @@ class MyWindow(QtWidgets.QMainWindow):
             try:
                 ssh = doСonnection.comm_dlink(self.ip_address, self.login, self.password)
                 ssh = netmiko.ConnectHandler(**ssh)
+                connect = ssh
                 return ssh
             except netmiko.NetmikoTimeoutException:
                 return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -77,7 +77,7 @@ class MyWindow(QtWidgets.QMainWindow):
     # Подключение к коммутатору Huawei
     def connectHuawei(self):
         if 0 < len(self.ip_address()):
-            huawei = doСonnection.comm_huawei_test(self.ip_address, self.login, self.password)
+            huawei = doСonnection.comm_huawei(self.ip_address, self.login, self.password)
             
             self.ui.resultEdit.setText("huawei подключенно")
             return huawei

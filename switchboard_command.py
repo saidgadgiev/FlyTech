@@ -16,6 +16,19 @@ def connectDlink(ip_address, login, password):
         return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
                 "являются:\nНеверные имя пользователя и пароль")
 
+# Подключение к коммутатору Huawei
+def connectHuawei(ip_address, login, password):
+    try:
+        ssh = doСonnection.comm_huawei(ip_address, login, password)
+        ssh = netmiko.ConnectHandler(**ssh)
+        return ssh
+    except netmiko.NetmikoTimeoutException:
+        return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+                "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+                "брандмауэр, блокирующий доступ.\n")
+    except netmiko.NetmikoAuthenticationException:
+        return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+                "являются:\nНеверные имя пользователя и пароль")
 
 # Коммутатор Huawei просмотр интерфейсов
 def interfHuawei(ip_address, login, password):

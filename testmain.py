@@ -1,36 +1,28 @@
-import sys
-
-import disein
-import doСonnection
 import netmiko
+import switchboard_command
+import doСonnection
 
-from PyQt5 import QtWidgets
-
-
-class MyWindow(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
-        # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
-        self.ui = disein.Ui_MainWindow()
-        self.ui.setupUi(self)
-        self.ui.interfBTN.clicked.connect(self.comm_huawei_f)
-        self.ip_address = self.ui.ipAddressEdit.text
-
-        # self.ui.label_3.setText(self.btnTest())
-
-    # Коммутатор Huawei
-    def comm_huawei_f(self):
-        ssh = doWorking.comm_huawei(self.ip_address)
-        ssh = netmiko.ConnectHandler(**ssh)
-        result = ssh.send_command('dis int br')
-        # result = doWorking.comm_huawei(self.ip_address)
-        # print(result)
-        # self.ui.ResultEdit.setText(self.ip_address())
-        self.ui.resultEdit.setText(result)
-
-
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    window = MyWindow()
-    window.show()
-    sys.exit(app.exec_())
+ip_address = input('Введите IP адресс -> ')
+login = input('Введите логин -> ')
+password = input('Введите пароль -> ')
+device = doСonnection.comm_dlink(ip_address, login, password)
+# device = switchboard_command.connectDlink(ip_address, login, password)
+ssh = None
+bol = True
+print("1. Подключить коммутатор")
+print("2. Просмотр интерфейсов")
+print("3. список маков")
+while bol == True:
+    comm = input('enter -> ')
+    if comm == "1":
+        ssh = netmiko.ConnectHandler(**device)
+    elif comm == "2":
+        res = ssh.send_command("show ports")
+        print(res)
+    elif comm == "3":
+        res = ssh.send_command("show fdb")
+        print(res)
+    else: 
+        print("false")
+        bol = False
+print(device)

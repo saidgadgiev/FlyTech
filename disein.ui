@@ -119,7 +119,6 @@
        <item>
         <widget class="QLineEdit" name="passwordEdit"/>
        </item>
->>>>>>> test
       </layout>
      </widget>
     </item>
@@ -399,6 +398,13 @@
                 </property>
                </widget>
               </item>
+              <item row="6" column="0" colspan="2">
+               <widget class="QPushButton" name="connectHuawei">
+                <property name="text">
+                 <string>Подключение</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -635,6 +641,13 @@
                 </property>
                 <property name="text">
                  <string>Отобр порта</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0" colspan="2">
+               <widget class="QPushButton" name="connectDLink">
+                <property name="text">
+                 <string>Подключение</string>
                 </property>
                </widget>
               </item>

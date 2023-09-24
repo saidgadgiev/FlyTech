@@ -1,10 +1,8 @@
 import sys
 from PyQt5.QtWidgets import (QLineEdit, QInputDialog)
 import disein
-import netmiko
 import switchboard_command
 from PyQt5 import QtWidgets
-import doСonnection
 
 
 class MyWindow(QtWidgets.QMainWindow):
@@ -17,8 +15,8 @@ class MyWindow(QtWidgets.QMainWindow):
         self.login = self.ui.loginEdit.text  # Ввод логина
         self.password = self.ui.passwordEdit.text  # ввод пароля
 
-        self.ui.connectDLink.clicked.connect(self.connectDLink)  # Подключение к комм DLink
-        self.ui.connectHuawei.clicked.connect(self.connectHuawei)  # Подключение к комм Huawei
+        # self.ui.connectDLink.clicked.connect(self.connectDLink)  # Подключение к комм DLink
+        # self.ui.connectHuawei.clicked.connect(self.connectHuawei)  # Подключение к комм Huawei
         self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов Huawei
         self.ui.interfBTN_2.clicked.connect(self.switchbord_interf_dlink) # кнопка просмотр портов DLink
         self.ui.listMacBTN.clicked.connect(self.listMac)  # Кнопка список маков Huawei
@@ -57,6 +55,7 @@ class MyWindow(QtWidgets.QMainWindow):
             return text
         
     # Подключение к коммут DLink
+    '''
     def connectDLink(self):
         if 0 < len(self.ip_address()):
             try:
@@ -73,8 +72,9 @@ class MyWindow(QtWidgets.QMainWindow):
                         "являются:\nНеверные имя пользователя и пароль")
         else:
             self.ui.resultEdit_2.setText("Введите IP устройства")
-
+    '''
     # Подключение к коммутатору Huawei
+    """
     def connectHuawei(self):
         if 0 < len(self.ip_address()):
             huawei = doСonnection.comm_huawei(self.ip_address, self.login, self.password)
@@ -83,7 +83,7 @@ class MyWindow(QtWidgets.QMainWindow):
             return huawei
         else:
             self.ui.resultEdit.setText("Введите IP устройства")
-
+    """
     # просмотр интерфейсов Huawei
     def switchbord_interf(self):
         if 0 < len(self.ip_address()):
@@ -94,8 +94,11 @@ class MyWindow(QtWidgets.QMainWindow):
 
     # просмотр интерфейсов D-link
     def switchbord_interf_dlink(self):
-        res = self.connectDLink().send_command('show ports')
-        self.ui.resultEdit_2.setText(res)
+        if 0 < len(self.ip_address()):
+            huawei = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_2.setText(huawei)
+        else:
+            self.ui.resultEdit_2.setText("Введите IP устройства")
 
 
     # список маков Huawei
@@ -109,8 +112,11 @@ class MyWindow(QtWidgets.QMainWindow):
         
     # список маков DLink
     def listMac_dlink(self):
-        res = self.connectDLink().send_command('show fdb')
-        self.ui.resultEdit_2.setText(res)
+        if 0 < len(self.ip_address()):
+            huawei = switchboard_command.listMacDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_2.setText(huawei)
+        else:
+            self.ui.resultEdit_2.setText("Введите IP устройства")
 
     # Просмотр вланов Huawei
     def listVlan(self):

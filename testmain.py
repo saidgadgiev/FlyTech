@@ -1,11 +1,13 @@
 import netmiko
-import switchboard_command
-import doСonnection
-
 ip_address = input('Введите IP адресс -> ')
 login = input('Введите логин -> ')
 password = input('Введите пароль -> ')
-device = doСonnection.comm_dlink(ip_address, login, password)
+device = {
+        'device_type': 'dlink_ds_telnet',
+        'host': ip_address,
+        'username': login,
+        'password': password,
+    }
 # device = switchboard_command.connectDlink(ip_address, login, password)
 ssh = None
 bol = True

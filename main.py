@@ -95,8 +95,8 @@ class MyWindow(QtWidgets.QMainWindow):
     # просмотр интерфейсов D-link
     def switchbord_interf_dlink(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_2.setText(huawei)
+            dlink = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_2.setText(dlink)
         else:
             self.ui.resultEdit_2.setText("Введите IP устройства")
 

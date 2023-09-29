@@ -2,33 +2,34 @@ import netmiko
 
 import doСonnection
 
-# Подключение к коммутатору Huawei
-def connectDlink(ip_address, login, password):
-    try:
-        ssh = doСonnection.comm_dlink(ip_address, login, password)
-        ssh = netmiko.ConnectHandler(**ssh)
-        return ssh
-    except netmiko.NetmikoTimeoutException:
-        return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
-                "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
-                "брандмауэр, блокирующий доступ.\n")
-    except netmiko.NetmikoAuthenticationException:
-        return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
-                "являются:\nНеверные имя пользователя и пароль")
+# # Подключение к коммутатору Huawei
+# def connectDlink(ip_address, login, password):
+#     try:
+#         ssh = doСonnection.comm_dlink(ip_address, login, password)
+#         ssh = netmiko.ConnectHandler(**ssh)
+#         return ssh
+#     except netmiko.NetmikoTimeoutException:
+#         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+#                 "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+#                 "брандмауэр, блокирующий доступ.\n")
+#     except netmiko.NetmikoAuthenticationException:
+#         return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+#                 "являются:\nНеверные имя пользователя и пароль")
 
-# Подключение к коммутатору Huawei
-def connectHuawei(ip_address, login, password):
-    try:
-        ssh = doСonnection.comm_huawei(ip_address, login, password)
-        ssh = netmiko.ConnectHandler(**ssh)
-        return ssh
-    except netmiko.NetmikoTimeoutException:
-        return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
-                "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
-                "брандмауэр, блокирующий доступ.\n")
-    except netmiko.NetmikoAuthenticationException:
-        return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
-                "являются:\nНеверные имя пользователя и пароль")
+# # Подключение к коммутатору Huawei
+# def connectHuawei(ip_address, login, password):
+#     try:
+#         ssh = doСonnection.comm_huawei(ip_address, login, password)
+#         ssh = netmiko.ConnectHandler(**ssh)
+#         return ssh
+#     except netmiko.NetmikoTimeoutException:
+#         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+#                 "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+#                 "брандмауэр, блокирующий доступ.\n")
+#     except netmiko.NetmikoAuthenticationException:
+#         return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+#                 "являются:\nНеверные имя пользователя и пароль")
+
 
 # Коммутатор Huawei просмотр интерфейсов
 def interfHuawei(ip_address, login, password):
@@ -36,6 +37,7 @@ def interfHuawei(ip_address, login, password):
         ssh = doСonnection.comm_huawei(ip_address, login, password)
         ssh = netmiko.ConnectHandler(**ssh)
         result = ssh.send_command('display interface brief')
+        ssh.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -51,6 +53,7 @@ def interfDLink(ip_address, login, password):
         ssh = doСonnection.comm_dlink(ip_address, login, password)
         ssh = netmiko.ConnectHandler(**ssh)
         result = ssh.send_command('show ports')
+        ssh.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -68,6 +71,7 @@ def listMacHuawei(ip_address, login, password):
         ssh1 = netmiko.ConnectHandler(**ssh)
         command = 'display mac-address'
         result = ssh1.send_command(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -84,6 +88,7 @@ def listMacDLink(ip_address, login, password):
         ssh1 = netmiko.ConnectHandler(**ssh)
         command = 'show fdb'
         result = ssh1.send_command(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -99,6 +104,7 @@ def listVlanHuawei(ip_address, login, password):
         ssh = doСonnection.comm_huawei(ip_address, login, password)
         ssh1 = netmiko.ConnectHandler(**ssh)
         result = ssh1.send_command('display vlan')
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -114,6 +120,7 @@ def listVlanDlink(ip_address, login, password):
         ssh = doСonnection.comm_dlink(ip_address, login, password)
         ssh1 = netmiko.ConnectHandler(**ssh)
         result = ssh1.send_command('show vlan')
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -131,6 +138,7 @@ def infoPortHuawei(ip_address, port, login, password):
         ssh1 = netmiko.ConnectHandler(**ssh)
         command = 'display interface Ethernet 0/0/' + str(port)
         result = ssh1.send_command(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -147,6 +155,7 @@ def infoPortDlink(ip_address, port, login, password):
         ssh1 = netmiko.ConnectHandler(**ssh)
         command = 'show ports ' + str(port) + ' details'
         result = ssh1.send_command(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -165,6 +174,7 @@ def serchMacAddressHuawei(ip_address, macc, login, password):
         command = 'display mac-address ' + macc
         # print(command)
         result = ssh1.send_command(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -182,6 +192,7 @@ def serchMacAddressDlink(ip_address, macc, login, password):
         command = 'show fdb mac_address ' + macc
         # print(command)
         result = ssh1.send_command(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -199,6 +210,7 @@ def maccAboutPortHuawei(ip_address, port, login, password):
         ssh1 = netmiko.ConnectHandler(**ssh)
         command = 'display mac-address dynamic Ethernet 0/0/' + str(port)
         result = ssh1.send_command(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -215,6 +227,7 @@ def maccAboutPortDlink(ip_address, port, login, password):
         ssh1 = netmiko.ConnectHandler(**ssh)
         command = 'show fdb port ' + str(port)
         result = ssh1.send_command(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -237,6 +250,7 @@ def checkPortHuawei(ip_address, port, login, password):
         ]
         print(command)
         result = ssh1.send_config_set(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -259,6 +273,7 @@ def disThisPortHuawei(ip_address, port, login, password):
             'display this'
         ]
         result = ssh1.send_config_set(command)
+        ssh1.disconnect
         print(result)
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -295,6 +310,7 @@ def shutdown_port_dlink(ip_address, port, login, password):
         command = ['config ports '  + str(port) +
                ' state disable']
         result = ssh1.send_config_set(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -314,6 +330,7 @@ def undo_shutdown_port_dlink(ip_address, port, login, password):
                ' state enable']
 
         result = ssh1.send_config_set(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
@@ -334,6 +351,7 @@ def undo_shutdown_port(ip_address, port, login, password):
                'undo shutdown']
 
         result = ssh1.send_config_set(command)
+        ssh1.disconnect
         return result
     except netmiko.NetmikoTimeoutException:
         return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "

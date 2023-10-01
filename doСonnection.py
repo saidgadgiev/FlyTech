@@ -1,6 +1,6 @@
 def comm_huawei(ip_address, login, password):
     huawei_router = {
-        'device_type': 'huawei', 
+        'device_type': 'huawei',
         'host': ip_address(),
         'username': login(),
         'password': password(),
@@ -22,6 +22,7 @@ def comm_dlink(ip_address, login, password):
     }
     return dlink_router
 
+
 def comm_dlink_telnet(ip_address, login, password):
     dlink_router = {
         'device_type': 'dlink_ds_telnet',
@@ -30,6 +31,7 @@ def comm_dlink_telnet(ip_address, login, password):
         'password': password(),
     }
     return dlink_router
+
 
 def comm_zte_telnet(ip_address, login, password):
     dlink_router = {

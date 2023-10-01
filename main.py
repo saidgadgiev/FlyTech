@@ -1,7 +1,8 @@
 import sys
 from PyQt5.QtWidgets import (QLineEdit, QInputDialog)
 import gui
-import switchboard_command
+import commands.huawei
+import commands.dlink
 from PyQt5 import QtWidgets
 
 
@@ -88,7 +89,7 @@ class MyWindow(QtWidgets.QMainWindow):
     # просмотр интерфейсов Huawei
     def switchbord_interf(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.interfHuawei(self.ip_address, self.login, self.password)
+            huawei = commands.huawei.interfHuawei(self.ip_address, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -96,7 +97,7 @@ class MyWindow(QtWidgets.QMainWindow):
     # просмотр интерфейсов D-link
     def switchbord_interf_dlink(self):
         if 0 < len(self.ip_address()):
-            dlink = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
+            dlink = commands.dlink.interfDLink(self.ip_address, self.login, self.password)
             self.ui.resultEdit_Dlink.setText(dlink)
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")
@@ -104,7 +105,7 @@ class MyWindow(QtWidgets.QMainWindow):
     # список маков Huawei
     def listMac(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.listMacHuawei(self.ip_address, self.login, self.password)
+            huawei = commands.huawei.listMacHuawei(self.ip_address, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -112,15 +113,15 @@ class MyWindow(QtWidgets.QMainWindow):
     # список маков DLink
     def listMac_dlink(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.listMacDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_Dlink.setText(huawei)
+            dlink = commands.dlink.listMacDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
     # Просмотр вланов Huawei
     def listVlan(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.listVlanHuawei(self.ip_address, self.login, self.password)
+            huawei = commands.huawei.listVlanHuawei(self.ip_address, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -128,7 +129,7 @@ class MyWindow(QtWidgets.QMainWindow):
     # Просмотр вланов DLink
     def listVlanDl(self):
         if 0 < len(self.ip_address()):
-            dlink = switchboard_command.listVlanDlink(self.ip_address, self.login, self.password)
+            dlink = commands.dlink.listVlanDlink(self.ip_address, self.login, self.password)
             self.ui.resultEdit_Dlink.setText(dlink)
         else:
             (self.ui.resultEdit_Dlink.setText("Введите IP устройства"))
@@ -137,7 +138,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def infoPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.infoPortHuawei(self.ip_address, port, self.login, self.password)
+            huawei = commands.huawei.infoPortHuawei(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -146,7 +147,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def infoPortDl(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            dlink = switchboard_command.infoPortDlink(self.ip_address, port, self.login, self.password)
+            dlink = commands.dlink.infoPortDlink(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Dlink.setText(dlink)
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")
@@ -155,7 +156,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def serchMacAddress(self):
         if 0 < len(self.ip_address()):
             macAddress = self.inputStrDialog()
-            huawei = switchboard_command.serchMacAddressHuawei(self.ip_address, macAddress, self.login, self.password)
+            huawei = commands.huawei.serchMacAddressHuawei(self.ip_address, macAddress, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -164,7 +165,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def serchMacAddressDl(self):
         if 0 < len(self.ip_address()):
             macAddress = self.inputStrDialog()
-            dlink = switchboard_command.serchMacAddressDlink(self.ip_address, macAddress, self.login, self.password)
+            dlink = commands.dlink.serchMacAddressDlink(self.ip_address, macAddress, self.login, self.password)
             self.ui.resultEdit_Dlink.setText(dlink)
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")
@@ -173,7 +174,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def macAboutPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.maccAboutPortHuawei(self.ip_address, port, self.login, self.password)
+            huawei = commands.huawei.maccAboutPortHuawei(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -182,7 +183,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def macAboutPortDl(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            dlink = switchboard_command.maccAboutPortDlink(self.ip_address, port, self.login, self.password)
+            dlink = commands.dlink.maccAboutPortDlink(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Dlink.setText(dlink)
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")
@@ -191,7 +192,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def checkPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.checkPortHuawei(self.ip_address, port, self.login, self.password)
+            huawei = commands.huawei.checkPortHuawei(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -200,7 +201,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def disThisPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.disThisPortHuawei(self.ip_address, port, self.login, self.password)
+            huawei = commands.huawei.disThisPortHuawei(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -209,7 +210,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def shutdownPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.shutdown_port(self.ip_address, port, self.login, self.password)
+            huawei = commands.huawei.shutdown_port(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(f'Порт {port} отключен')
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -218,7 +219,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def shutdownPortDlink(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.shutdown_port_dlink(self.ip_address, port, self.login, self.password)
+            dlink = commands.dlink.shutdown_port_dlink(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Dlink.setText(f'Порт {port} отключен')
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")
@@ -227,7 +228,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def noShutdownPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.undo_shutdown_port(self.ip_address, port, self.login, self.password)
+            huawei = commands.huawei.undo_shutdown_port(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Huawei.setText(f'Порт {port} включен')
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
@@ -236,7 +237,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def noShutdownPortDlink(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.undo_shutdown_port_dlink(self.ip_address, port, self.login, self.password)
+            dlink = commands.dlink.undo_shutdown_port_dlink(self.ip_address, port, self.login, self.password)
             self.ui.resultEdit_Dlink.setText(f'Порт {port} включен')
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")

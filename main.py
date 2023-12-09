@@ -1,7 +1,8 @@
 import sys
 from PyQt5.QtWidgets import (QLineEdit, QInputDialog)
-import disein
-import switchboard_command
+import gui
+import commands.huawei
+import commands.dlink
 from PyQt5 import QtWidgets
 
 
@@ -9,31 +10,31 @@ class MyWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
-        self.ui = disein.Ui_MainWindow()
+        self.ui = gui.Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ip_address = self.ui.ipAddressEdit.text  # IP адресс из строки ввода
+        self.ip_address = self.ui.ipAddressEdit.text  # IP адрес из строки ввода
         self.login = self.ui.loginEdit.text  # Ввод логина
         self.password = self.ui.passwordEdit.text  # ввод пароля
 
         # self.ui.connectDLink.clicked.connect(self.connectDLink)  # Подключение к комм DLink
         # self.ui.connectHuawei.clicked.connect(self.connectHuawei)  # Подключение к комм Huawei
-        self.ui.interfBTN.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов Huawei
-        self.ui.interfBTN_2.clicked.connect(self.switchbord_interf_dlink) # кнопка просмотр портов DLink
-        self.ui.listMacBTN.clicked.connect(self.listMac)  # Кнопка список маков Huawei
-        self.ui.listMacBTN_2.clicked.connect(self.listMac_dlink)  # Кнопка список маков DLink
-        self.ui.shundownPortBTN.clicked.connect(self.shutdownPort)  # Отключение порта Huawei
-        self.ui.shundownPortBTN_2.clicked.connect(self.shutdownPortDlink) # Отключение порта DLink
-        self.ui.noShundownPortBTN.clicked.connect(self.noShutdownPort) # Включение порта Huawei
-        self.ui.noShundownPortBTN_2.clicked.connect(self.noShutdownPortDlink) # Включение порта DLink
-        self.ui.listVlanBTN.clicked.connect(self.listVlan)  # Просмотр вланов Huawei
-        self.ui.listVlanBTN_2.clicked.connect(self.listVlanDl) # Просмотр вланов Dlink
-        self.ui.infoPortBTN.clicked.connect(self.infoPort)  # информация о порте Huawei
-        self.ui.infoPortBTN_2.clicked.connect(self.infoPortDl) # информация о порте Dlink
-        self.ui.serchMacBTN.clicked.connect(self.serchMacAddress)  # поиск по маку Huawei
-        self.ui.serchMacBTN_2.clicked.connect(self.serchMacAddressDl) # поиск по маку Dlink
-        self.ui.macPortBTN.clicked.connect(self.macAboutPort)  # маки на порту Huawei
-        self.ui.macPortBTN_2.clicked.connect(self.macAboutPortDl) # маки на порту Dlink
-        
+        self.ui.interfBTN_Huawei.clicked.connect(self.switchbord_interf)  # кнопка просмотр портов Huawei
+        self.ui.interfBTN_Dlink.clicked.connect(self.switchbord_interf_dlink)  # кнопка просмотр портов DLink
+        self.ui.listMacBTN_Huawei.clicked.connect(self.listMac)  # Кнопка список маков Huawei
+        self.ui.listMacBTN_Dlink.clicked.connect(self.listMac_dlink)  # Кнопка список маков DLink
+        self.ui.shundownPortBTN_Huawei.clicked.connect(self.shutdownPort)  # Отключение порта Huawei
+        self.ui.shundownPortBTN_Dlink.clicked.connect(self.shutdownPortDlink)  # Отключение порта DLink
+        self.ui.noShundownPortBTN_Huawei.clicked.connect(self.noShutdownPort)  # Включение порта Huawei
+        self.ui.noShundownPortBTN_Dlink.clicked.connect(self.noShutdownPortDlink)  # Включение порта DLink
+        self.ui.listVlanBTN_Huawei.clicked.connect(self.listVlan)  # Просмотр вланов Huawei
+        self.ui.listVlanBTN_Dlink.clicked.connect(self.listVlanDl)  # Просмотр вланов Dlink
+        self.ui.infoPortBTN_Huawei.clicked.connect(self.infoPort)  # информация о порте Huawei
+        self.ui.infoPortBTN_Dlink.clicked.connect(self.infoPortDl)  # информация о порте Dlink
+        self.ui.serchMacBTN_Huawei.clicked.connect(self.serchMacAddress)  # поиск по маку Huawei
+        self.ui.serchMacBTN_Dlink.clicked.connect(self.serchMacAddressDl)  # поиск по маку Dlink
+        self.ui.macPortBTN_Huawei.clicked.connect(self.macAboutPort)  # маки на порту Huawei
+        self.ui.macPortBTN_Dlink.clicked.connect(self.macAboutPortDl)  # маки на порту Dlink
+
         # self.ui.checkPortBTN.clicked.connect(self.checkPort)  # Диагностика порта
         # self.ui.disThisBTN.clicked.connect(self.disThisPort)  # что прописанно на порту
         # self.ui.label_3.setText(self.btnTest())
@@ -53,7 +54,7 @@ class MyWindow(QtWidgets.QMainWindow):
         if ok:
             le.setText(str(text))
             return text
-        
+
     # Подключение к коммут DLink
     '''
     def connectDLink(self):
@@ -79,168 +80,167 @@ class MyWindow(QtWidgets.QMainWindow):
         if 0 < len(self.ip_address()):
             huawei = doСonnection.comm_huawei(self.ip_address, self.login, self.password)
             
-            self.ui.resultEdit.setText("huawei подключенно")
+            self.ui.resultEdit.setText("huawei подключено")
             return huawei
         else:
             self.ui.resultEdit.setText("Введите IP устройства")
     """
+
     # просмотр интерфейсов Huawei
     def switchbord_interf(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.interfHuawei(self.ip_address, self.login, self.password)
-            self.ui.resultEdit.setText(huawei)
+            huawei = commands.huawei.interfHuawei(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(huawei)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # просмотр интерфейсов D-link
     def switchbord_interf_dlink(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.interfDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_2.setText(huawei)
+            dlink = commands.dlink.interfDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
         else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
-
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
     # список маков Huawei
     def listMac(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.listMacHuawei(self.ip_address, self.login, self.password)
-            self.ui.resultEdit.setText(huawei)
+            huawei = commands.huawei.listMacHuawei(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(huawei)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
-        
     # список маков DLink
     def listMac_dlink(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.listMacDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_2.setText(huawei)
+            dlink = commands.dlink.listMacDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
         else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
     # Просмотр вланов Huawei
     def listVlan(self):
         if 0 < len(self.ip_address()):
-            huawei = switchboard_command.listVlanHuawei(self.ip_address, self.login, self.password)
-            self.ui.resultEdit.setText(huawei)
+            huawei = commands.huawei.listVlanHuawei(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(huawei)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # Просмотр вланов DLink
     def listVlanDl(self):
         if 0 < len(self.ip_address()):
-            dlink = switchboard_command.listVlanDlink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_2.setText(dlink)
+            dlink = commands.dlink.listVlanDlink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
         else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+            (self.ui.resultEdit_Dlink.setText("Введите IP устройства"))
 
     # Информация о порте Huawei
     def infoPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.infoPortHuawei(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit.setText(huawei)
+            huawei = commands.huawei.infoPortHuawei(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(huawei)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # Информация о порте Dlink
     def infoPortDl(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            dlink = switchboard_command.infoPortDlink(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit_2.setText(dlink)
+            dlink = commands.dlink.infoPortDlink(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
         else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
     # Поиск по маку Huawei
     def serchMacAddress(self):
         if 0 < len(self.ip_address()):
             macAddress = self.inputStrDialog()
-            huawei = switchboard_command.serchMacAddressHuawei(self.ip_address, macAddress, self.login, self.password)
-            self.ui.resultEdit.setText(huawei)
+            huawei = commands.huawei.serchMacAddressHuawei(self.ip_address, macAddress, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(huawei)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # Поиск по маку Dlink
     def serchMacAddressDl(self):
         if 0 < len(self.ip_address()):
             macAddress = self.inputStrDialog()
-            dlink = switchboard_command.serchMacAddressDlink(self.ip_address, macAddress, self.login, self.password)
-            self.ui.resultEdit_2.setText(dlink)
+            dlink = commands.dlink.serchMacAddressDlink(self.ip_address, macAddress, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
         else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
     # Маки на порту Huawei
     def macAboutPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.maccAboutPortHuawei(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit.setText(huawei)
+            huawei = commands.huawei.maccAboutPortHuawei(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(huawei)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # Маки на порту Dlink
     def macAboutPortDl(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            dlink = switchboard_command.maccAboutPortDlink(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit_2.setText(dlink)
+            dlink = commands.dlink.maccAboutPortDlink(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
         else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
-    # Диагномтика порта Huawei
+    # Диагностика порта Huawei
     def checkPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.checkPortHuawei(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit.setText(huawei)
+            huawei = commands.huawei.checkPortHuawei(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(huawei)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
-    # Чтот прописанно на порту Huawei
+    # Что прописано на порту Huawei
     def disThisPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.disThisPortHuawei(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit.setText(huawei)
+            huawei = commands.huawei.disThisPortHuawei(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(huawei)
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # Отключение порта Huawei
     def shutdownPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.shutdown_port(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit.setText(f'Порт {port} отключен')
+            huawei = commands.huawei.shutdown_port(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(f'Порт {port} отключен')
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # Отключение порта Dlink
     def shutdownPortDlink(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.shutdown_port_dlink(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit_2.setText(f'Порт {port} отключен')
+            dlink = commands.dlink.shutdown_port_dlink(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(f'Порт {port} отключен')
         else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
     # Включение порта Huawei
     def noShutdownPort(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.undo_shutdown_port(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit.setText(f'Порт {port} включен')
+            huawei = commands.huawei.undo_shutdown_port(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Huawei.setText(f'Порт {port} включен')
         else:
-            self.ui.resultEdit.setText("Введите IP устройства")
+            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # Включение порта Dlink
     def noShutdownPortDlink(self):
         if 0 < len(self.ip_address()):
             port = self.inputDialog()
-            huawei = switchboard_command.undo_shutdown_port_dlink(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit_2.setText(f'Порт {port} включен')
+            dlink = commands.dlink.undo_shutdown_port_dlink(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(f'Порт {port} включен')
         else:
-            self.ui.resultEdit_2.setText("Введите IP устройства")
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
 
 if __name__ == "__main__":

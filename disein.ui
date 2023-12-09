@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>917</width>
-    <height>600</height>
+    <height>606</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -125,7 +125,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabHuawei">
        <attribute name="title">
@@ -148,7 +148,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QWidget" name="widget_2" native="true">
+         <widget class="QWidget" name="widget_Huawei" native="true">
           <property name="maximumSize">
            <size>
             <width>16777215</width>
@@ -172,7 +172,7 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="QWidget" name="widget" native="true">
+            <widget class="QWidget" name="widget_Huawei_2" native="true">
              <property name="maximumSize">
               <size>
                <width>221</width>
@@ -199,7 +199,7 @@
                <number>0</number>
               </property>
               <item row="0" column="0">
-               <widget class="QLabel" name="label">
+               <widget class="QLabel" name="label_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>115</width>
@@ -223,7 +223,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="commutatorCBox">
+               <widget class="QComboBox" name="commutatorCBox_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -239,7 +239,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QPushButton" name="interfBTN">
+               <widget class="QPushButton" name="interfBTN_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -252,7 +252,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QPushButton" name="listMacBTN">
+               <widget class="QPushButton" name="listMacBTN_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -271,7 +271,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QPushButton" name="infoPortBTN">
+               <widget class="QPushButton" name="infoPortBTN_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -283,21 +283,8 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QPushButton" name="listVlanBTN">
-                <property name="minimumSize">
-                 <size>
-                  <width>105</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Просмотр Vlan</string>
-                </property>
-               </widget>
-              </item>
               <item row="2" column="1">
-               <widget class="QPushButton" name="serchMacBTN">
+               <widget class="QPushButton" name="serchMacBTN_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -315,8 +302,21 @@
                 </property>
                </widget>
               </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="listVlanBTN_Huawei">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Просмотр Vlan</string>
+                </property>
+               </widget>
+              </item>
               <item row="3" column="1">
-               <widget class="QPushButton" name="macPortBTN">
+               <widget class="QPushButton" name="macPortBTN_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -334,8 +334,21 @@
                 </property>
                </widget>
               </item>
+              <item row="4" column="0">
+               <widget class="QPushButton" name="noShundownPortBTN_Huawei">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Включ.Порт</string>
+                </property>
+               </widget>
+              </item>
               <item row="4" column="1">
-               <widget class="QPushButton" name="checkPortBTN">
+               <widget class="QPushButton" name="checkPortBTN_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -353,8 +366,21 @@
                 </property>
                </widget>
               </item>
+              <item row="5" column="0">
+               <widget class="QPushButton" name="shundownPortBTN_Huawei">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Выкл.Порт</string>
+                </property>
+               </widget>
+              </item>
               <item row="5" column="1">
-               <widget class="QPushButton" name="disThisBTN">
+               <widget class="QPushButton" name="disThisBTN_Huawei">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -372,44 +398,11 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QPushButton" name="noShundownPortBTN">
-                <property name="minimumSize">
-                 <size>
-                  <width>105</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Включ.Порт</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QPushButton" name="shundownPortBTN">
-                <property name="minimumSize">
-                 <size>
-                  <width>105</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Выкл.Порт</string>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0" colspan="2">
-               <widget class="QPushButton" name="connectHuawei">
-                <property name="text">
-                 <string>Подключение</string>
-                </property>
-               </widget>
-              </item>
              </layout>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="resultEdit">
+            <widget class="QTextEdit" name="resultEdit_Huawei">
              <property name="font">
               <font>
                <pointsize>10</pointsize>
@@ -443,7 +436,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QWidget" name="widget_3" native="true">
+         <widget class="QWidget" name="widget_Dlink" native="true">
           <property name="maximumSize">
            <size>
             <width>16777215</width>
@@ -467,7 +460,7 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="QWidget" name="widget_4" native="true">
+            <widget class="QWidget" name="widget_Dlink_2" native="true">
              <property name="maximumSize">
               <size>
                <width>221</width>
@@ -494,7 +487,7 @@
                <number>0</number>
               </property>
               <item row="0" column="0">
-               <widget class="QLabel" name="label_3">
+               <widget class="QLabel" name="label_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>115</width>
@@ -512,10 +505,10 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="commutatorCBox_2"/>
+               <widget class="QComboBox" name="commutatorCBox_Dlink"/>
               </item>
               <item row="1" column="0">
-               <widget class="QPushButton" name="interfBTN_2">
+               <widget class="QPushButton" name="interfBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -528,7 +521,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QPushButton" name="listMacBTN_2">
+               <widget class="QPushButton" name="listMacBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -541,7 +534,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QPushButton" name="infoPortBTN_2">
+               <widget class="QPushButton" name="infoPortBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -554,7 +547,7 @@
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QPushButton" name="serchMacBTN_2">
+               <widget class="QPushButton" name="serchMacBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -567,7 +560,7 @@
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QPushButton" name="listVlanBTN_2">
+               <widget class="QPushButton" name="listVlanBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -580,7 +573,7 @@
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QPushButton" name="macPortBTN_2">
+               <widget class="QPushButton" name="macPortBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -593,7 +586,7 @@
                </widget>
               </item>
               <item row="4" column="0">
-               <widget class="QPushButton" name="noShundownPortBTN_2">
+               <widget class="QPushButton" name="noShundownPortBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -606,7 +599,7 @@
                </widget>
               </item>
               <item row="4" column="1">
-               <widget class="QPushButton" name="checkPortBTN_2">
+               <widget class="QPushButton" name="checkPortBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -619,7 +612,7 @@
                </widget>
               </item>
               <item row="5" column="0">
-               <widget class="QPushButton" name="shundownPortBTN_2">
+               <widget class="QPushButton" name="shundownPortBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -632,7 +625,7 @@
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QPushButton" name="disThisBTN_2">
+               <widget class="QPushButton" name="disThisBTN_Dlink">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -644,10 +637,291 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="0" colspan="2">
-               <widget class="QPushButton" name="connectDLink">
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="resultEdit_Dlink">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabZTE">
+       <attribute name="title">
+        <string>3.ZTE</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_10">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QWidget" name="widget_ZTE" native="true">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="widget_ZTE_2" native="true">
+             <property name="maximumSize">
+              <size>
+               <width>221</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <layout class="QFormLayout" name="formLayout_3">
+              <property name="horizontalSpacing">
+               <number>0</number>
+              </property>
+              <property name="verticalSpacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>115</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
                 <property name="text">
-                 <string>Подключение</string>
+                 <string>Выбор модели </string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="commutatorCBox_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="interfBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Просм портов</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPushButton" name="listMacBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Список Маков</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QPushButton" name="infoPortBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Инфо о порте</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QPushButton" name="serchMacBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Поиск по Маку</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="listVlanBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Просмотр Vlan</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QPushButton" name="macPortBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Мак на порту</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QPushButton" name="noShundownPortBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Включ.Порт</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QPushButton" name="checkPortBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Диан.Порта</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QPushButton" name="shundownPortBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Выкл.Порт</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QPushButton" name="disThisBTN_ZTE">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Отобр порта</string>
                 </property>
                </widget>
               </item>
@@ -655,7 +929,583 @@
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="resultEdit_2">
+            <widget class="QTextEdit" name="resultEdit_ZTE">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabSNR">
+       <attribute name="title">
+        <string>4.SNR</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QWidget" name="widget_SNR" native="true">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="widget_SNR_2" native="true">
+             <property name="maximumSize">
+              <size>
+               <width>221</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <layout class="QFormLayout" name="formLayout_4">
+              <property name="horizontalSpacing">
+               <number>0</number>
+              </property>
+              <property name="verticalSpacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>115</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Выбор модели </string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="commutatorCBox_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="interfBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Просм портов</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPushButton" name="listMacBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Список Маков</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QPushButton" name="infoPortBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Инфо о порте</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QPushButton" name="serchMacBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Поиск по Маку</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="listVlanBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Просмотр Vlan</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QPushButton" name="macPortBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Мак на порту</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QPushButton" name="noShundownPortBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Включ.Порт</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QPushButton" name="checkPortBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Диан.Порта</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QPushButton" name="shundownPortBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Выкл.Порт</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QPushButton" name="disThisBTN_SNR">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Отобр порта</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="resultEdit_SNR">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabAlcatel">
+       <attribute name="title">
+        <string>5.Alcatel</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QWidget" name="widget_Alcatel" native="true">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="widget_Alcatel_2" native="true">
+             <property name="maximumSize">
+              <size>
+               <width>221</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <layout class="QFormLayout" name="formLayout_6">
+              <property name="horizontalSpacing">
+               <number>0</number>
+              </property>
+              <property name="verticalSpacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>115</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Выбор модели </string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="commutatorCBox_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="interfBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Просм портов</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPushButton" name="listMacBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Список Маков</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QPushButton" name="infoPortBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Инфо о порте</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QPushButton" name="serchMacBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Поиск по Маку</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="listVlanBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Просмотр Vlan</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QPushButton" name="macPortBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Мак на порту</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QPushButton" name="noShundownPortBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Включ.Порт</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QPushButton" name="checkPortBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Диан.Порта</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QPushButton" name="shundownPortBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Выкл.Порт</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QPushButton" name="disThisBTN_Alcatel">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>105</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Отобр порта</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="resultEdit_Alcatel">
              <property name="font">
               <font>
                <pointsize>10</pointsize>

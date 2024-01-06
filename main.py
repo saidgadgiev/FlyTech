@@ -1,8 +1,9 @@
 import sys
 from PyQt5.QtWidgets import (QLineEdit, QInputDialog)
-import gui
+import disein
 import commands.huawei
 import commands.dlink
+import commands.gPonZTE
 from PyQt5 import QtWidgets
 
 
@@ -10,7 +11,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
-        self.ui = gui.Ui_MainWindow()
+        self.ui = disein.Ui_MainWindow()
         self.ui.setupUi(self)
         self.ip_address = self.ui.ipAddressEdit.text  # IP адрес из строки ввода
         self.login = self.ui.loginEdit.text  # Ввод логина
@@ -34,6 +35,12 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.serchMacBTN_Dlink.clicked.connect(self.serchMacAddressDl)  # поиск по маку Dlink
         self.ui.macPortBTN_Huawei.clicked.connect(self.macAboutPort)  # маки на порту Huawei
         self.ui.macPortBTN_Dlink.clicked.connect(self.macAboutPortDl)  # маки на порту Dlink
+        self.ui.BTN_ListOfRegistONU.clicked.connect(self.listRegistrOnu)  # Список зареганных онушек
+        self.ui.BTN_SignalStrenght.clicked.connect(self.signalStrenght)  # Уровень сигнала
+        self.ui.BTN_showOnuNoReristration.clicked.connect(self.showOnuNoRegistration)  #не зареганные онушки
+        self.ui.BTN_infoOnu.clicked.connect(self.infoRegisteredOnuGpon)  # Информация о зареганых онушек
+        self.ui.BTN_whatIsPrescribed.clicked.connect(self.whatIsPrescribedOnuGpon)  # Что прописанно на ОНУ G-PON ZTE
+        self.ui.BTN_ShowMacOnu.clicked.connect(self.showMacOnuGpon)  # Просмотр Маков на ону
 
         # self.ui.checkPortBTN.clicked.connect(self.checkPort)  # Диагностика порта
         # self.ui.disThisBTN.clicked.connect(self.disThisPort)  # что прописанно на порту
@@ -51,6 +58,14 @@ class MyWindow(QtWidgets.QMainWindow):
     def inputStrDialog(self):
         le = QLineEdit(self)
         text, ok = QInputDialog.getText(self, 'Enter Macc', 'Введите Мак ->')
+        if ok:
+            le.setText(str(text))
+            return text
+
+        # Диалоговое окно с получением значения ПОН порта
+    def inputPonDialog(self):
+        le = QLineEdit(self)
+        text, ok = QInputDialog.getText(self, 'Enter Pon port', 'Введите Pon порт ->')
         if ok:
             le.setText(str(text))
             return text
@@ -242,6 +257,54 @@ class MyWindow(QtWidgets.QMainWindow):
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
+    # Просмотри не зарегестрированных онушек G-PON ZTE
+
+    def showOnuNoRegistration(self):
+        if 0 < len(self.ip_address()):
+            gPonZte = commands.gPonZTE.showNoRegistOnuComm(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
+        else:
+            self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")
+
+    # Список зарегестрированных ону G-PON ZTE
+    def listRegistrOnu(self):
+        if 0 < len(self.ip_address()):
+            gPonZte = commands.gPonZTE.listRegistrOnu(self.ip_address, self.inputPonDialog(), self.login, self.password)
+            self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
+        else:
+            self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")
+
+    # Уровень сигнала G-PON ZTE
+    def signalStrenght(self):
+        if 0 < len(self.ip_address()):
+            gPonZte = commands.gPonZTE.signalStrenghtCommnd(self.ip_address, self.inputPonDialog(), self.login, self.password)
+            self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
+        else:
+            self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")
+
+    # Информация о зареганых онушек G-PON ZTE
+    def infoRegisteredOnuGpon(self):
+        if 0 < len(self.ip_address()):
+            gPonZte = commands.gPonZTE.infoRegisteredOnuCommand(self.ip_address, self.inputPonDialog(), self.login, self.password)
+            self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
+        else:
+            self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")
+
+    # Что прописанно на ОНУ G-PON ZTE
+    def whatIsPrescribedOnuGpon(self):
+        if 0 < len(self.ip_address()):
+            gPonZte = commands.gPonZTE.whatIsPrescribed(self.ip_address, self.inputPonDialog(), self.login, self.password)
+            self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
+        else:
+            self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")
+
+    # Просмотр Маков на ону G-PON ZTE
+    def showMacOnuGpon(self):
+        if 0 < len(self.ip_address()):
+            gPonZte = commands.gPonZTE.showMac(self.ip_address, self.inputPonDialog(), self.login, self.password)
+            self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
+        else:
+            self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

@@ -1,5 +1,6 @@
 .gitignore
 build/
 dist/
+.venv/
 main.spec
 __pycache__

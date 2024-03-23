@@ -9,7 +9,7 @@ def showNoRegistOnuComm(ip_address, login, password):
     try:
         telnet = doСonnection.comm_zte_telnet(ip_address, login, password)
         telnetConnect = netmiko.ConnectHandler(**telnet)
-        command = 'show gpon onu uncfg'
+        command = 'show pon onu uncfg'
         resultat = telnetConnect.send_command(command)
         telnetConnect.disconnect()
         return resultat

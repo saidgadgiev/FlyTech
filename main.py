@@ -41,6 +41,9 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.BTN_infoOnu.clicked.connect(self.infoRegisteredOnuGpon)  # Информация о зареганых онушек
         self.ui.BTN_whatIsPrescribed.clicked.connect(self.whatIsPrescribedOnuGpon)  # Что прописанно на ОНУ G-PON ZTE
         self.ui.BTN_ShowMacOnu.clicked.connect(self.showMacOnuGpon)  # Просмотр Маков на ону
+        self.ui.info_ONU_BTN_GPON_ZTE.clicked.connect(self.showInfoONU)  # Просмотр информации об онушки
+        self.ui.info_port_ONU_BTN_GPON_ZTE.clicked.connect(self.infoAboutPortONU)  # Просмотр информации портов на ОНУ
+        
 
         # self.ui.checkPortBTN.clicked.connect(self.checkPort)  # Диагностика порта
         # self.ui.disThisBTN.clicked.connect(self.disThisPort)  # что прописанно на порту
@@ -108,15 +111,7 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
-
-    # просмотр интерфейсов D-link
-    def switchbord_interf_dlink(self):
-        if 0 < len(self.ip_address()):
-            dlink = commands.dlink.interfDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_Dlink.setText(dlink)
-        else:
-            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
-
+            
     # список маков Huawei
     def listMac(self):
         if 0 < len(self.ip_address()):
@@ -125,14 +120,6 @@ class MyWindow(QtWidgets.QMainWindow):
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
-    # список маков DLink
-    def listMac_dlink(self):
-        if 0 < len(self.ip_address()):
-            dlink = commands.dlink.listMacDLink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_Dlink.setText(dlink)
-        else:
-            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
-
     # Просмотр вланов Huawei
     def listVlan(self):
         if 0 < len(self.ip_address()):
@@ -140,14 +127,6 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
-
-    # Просмотр вланов DLink
-    def listVlanDl(self):
-        if 0 < len(self.ip_address()):
-            dlink = commands.dlink.listVlanDlink(self.ip_address, self.login, self.password)
-            self.ui.resultEdit_Dlink.setText(dlink)
-        else:
-            (self.ui.resultEdit_Dlink.setText("Введите IP устройства"))
 
     # Информация о порте Huawei
     def infoPort(self):
@@ -158,15 +137,6 @@ class MyWindow(QtWidgets.QMainWindow):
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
-    # Информация о порте Dlink
-    def infoPortDl(self):
-        if 0 < len(self.ip_address()):
-            port = self.inputDialog()
-            dlink = commands.dlink.infoPortDlink(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit_Dlink.setText(dlink)
-        else:
-            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
-
     # Поиск по маку Huawei
     def serchMacAddress(self):
         if 0 < len(self.ip_address()):
@@ -175,16 +145,7 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
-
-    # Поиск по маку Dlink
-    def serchMacAddressDl(self):
-        if 0 < len(self.ip_address()):
-            macAddress = self.inputStrDialog()
-            dlink = commands.dlink.serchMacAddressDlink(self.ip_address, macAddress, self.login, self.password)
-            self.ui.resultEdit_Dlink.setText(dlink)
-        else:
-            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
-
+            
     # Маки на порту Huawei
     def macAboutPort(self):
         if 0 < len(self.ip_address()):
@@ -193,15 +154,6 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
-
-    # Маки на порту Dlink
-    def macAboutPortDl(self):
-        if 0 < len(self.ip_address()):
-            port = self.inputDialog()
-            dlink = commands.dlink.maccAboutPortDlink(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit_Dlink.setText(dlink)
-        else:
-            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
     # Диагностика порта Huawei
     def checkPort(self):
@@ -220,7 +172,7 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.resultEdit_Huawei.setText(huawei)
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
-
+            
     # Отключение порта Huawei
     def shutdownPort(self):
         if 0 < len(self.ip_address()):
@@ -229,6 +181,60 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.resultEdit_Huawei.setText(f'Порт {port} отключен')
         else:
             self.ui.resultEdit_Huawei.setText("Введите IP устройства")
+            
+            
+
+    # просмотр интерфейсов D-link
+    def switchbord_interf_dlink(self):
+        if 0 < len(self.ip_address()):
+            dlink = commands.dlink.interfDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
+        else:
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
+
+    # список маков DLink
+    def listMac_dlink(self):
+        if 0 < len(self.ip_address()):
+            dlink = commands.dlink.listMacDLink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
+        else:
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
+
+    
+    # Просмотр вланов DLink
+    def listVlanDl(self):
+        if 0 < len(self.ip_address()):
+            dlink = commands.dlink.listVlanDlink(self.ip_address, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
+        else:
+            (self.ui.resultEdit_Dlink.setText("Введите IP устройства"))
+
+    # Информация о порте Dlink
+    def infoPortDl(self):
+        if 0 < len(self.ip_address()):
+            port = self.inputDialog()
+            dlink = commands.dlink.infoPortDlink(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
+        else:
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
+
+    # Поиск по маку Dlink
+    def serchMacAddressDl(self):
+        if 0 < len(self.ip_address()):
+            macAddress = self.inputStrDialog()
+            dlink = commands.dlink.serchMacAddressDlink(self.ip_address, macAddress, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
+        else:
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
+
+    # Маки на порту Dlink
+    def macAboutPortDl(self):
+        if 0 < len(self.ip_address()):
+            port = self.inputDialog()
+            dlink = commands.dlink.maccAboutPortDlink(self.ip_address, port, self.login, self.password)
+            self.ui.resultEdit_Dlink.setText(dlink)
+        else:
+            self.ui.resultEdit_Dlink.setText("Введите IP устройства")
 
     # Отключение порта Dlink
     def shutdownPortDlink(self):
@@ -238,15 +244,6 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.resultEdit_Dlink.setText(f'Порт {port} отключен')
         else:
             self.ui.resultEdit_Dlink.setText("Введите IP устройства")
-
-    # Включение порта Huawei
-    def noShutdownPort(self):
-        if 0 < len(self.ip_address()):
-            port = self.inputDialog()
-            huawei = commands.huawei.undo_shutdown_port(self.ip_address, port, self.login, self.password)
-            self.ui.resultEdit_Huawei.setText(f'Порт {port} включен')
-        else:
-            self.ui.resultEdit_Huawei.setText("Введите IP устройства")
 
     # Включение порта Dlink
     def noShutdownPortDlink(self):
@@ -302,6 +299,20 @@ class MyWindow(QtWidgets.QMainWindow):
     def showMacOnuGpon(self):
         if 0 < len(self.ip_address()):
             gPonZte = commands.gPonZTE.showMac(self.ip_address, self.inputPonDialog(), self.login, self.password)
+            self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
+        else:
+            self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")
+            
+    def showInfoONU(self):
+        if 0 < len(self.ip_address()):
+            gPonZte = commands.gPonZTE.showInforOnu(self.ip_address, self.inputPonDialog(), self.login, self.password)
+            self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
+        else:
+            self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")
+            
+    def infoAboutPortONU(self):
+        if 0 < len(self.ip_address()):
+            gPonZte = commands.gPonZTE.infoAboutPortONU(self.ip_address, self.inputPonDialog(), self.login, self.password)
             self.ui.resultEdit_GPON_ZTE.setText(gPonZte)
         else:
             self.ui.resultEdit_GPON_ZTE.setText("Введите IP устройства")

@@ -106,3 +106,37 @@ def showMac(ip_address, port, login, password):
     except netmiko.NetmikoAuthenticationException:
         return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
                 "являются:\nНеверные имя пользователя и пароль")
+        
+        
+# Просмотр Информации об ону
+def showInforOnu(ip_address, port, login, password):
+    try:
+        telnet = doСonnection.comm_zte_telnet(ip_address, login, password)
+        telnetConnect = netmiko.ConnectHandler(**telnet)
+        command = ' show pon onu information gpon-onu_1/' + port
+        resultat = telnetConnect.send_command(command)
+        telnetConnect.disconnect()
+        return resultat
+    except socket.gaierror:
+        return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+                "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+                "брандмауэр, блокирующий доступ.\n")
+    except netmiko.NetmikoAuthenticationException:
+        return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+                "являются:\nНеверные имя пользователя и пароль")
+        
+def infoAboutPortONU(ip_address, port, login, password):
+    try:
+        telnet = doСonnection.comm_zte_telnet(ip_address, login, password)
+        telnetConnect = netmiko.ConnectHandler(**telnet)
+        command = 'show gpon remote-onu interface eth gpon-onu_1/' + port
+        resultat = telnetConnect.send_command(command)
+        telnetConnect.disconnect()
+        return resultat
+    except socket.gaierror:
+        return ("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+                "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+                "брандмауэр, блокирующий доступ.\n")
+    except netmiko.NetmikoAuthenticationException:
+        return ("Не удалось выполнить аутентификацию на устройстве. \nРаспространенными причинами этой проблемы "
+                "являются:\nНеверные имя пользователя и пароль")

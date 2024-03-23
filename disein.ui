@@ -130,7 +130,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>7</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="tabHuawei">
        <attribute name="title">
@@ -1714,7 +1714,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="noShundownPortBTN_GPON_ZTE">
+               <widget class="QPushButton" name="info_ONU_BTN_GPON_ZTE">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -1722,12 +1722,12 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>????</string>
+                 <string>Информация об Онушке</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="disThisBTN_GPON_ZTE">
+               <widget class="QPushButton" name="info_port_ONU_BTN_GPON_ZTE">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -1741,7 +1741,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>?????</string>
+                 <string>Инфо портов на ОНУ</string>
                 </property>
                </widget>
               </item>
@@ -2244,7 +2244,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="noShundownPortBTN_GPON_ZTE_3">
+               <widget class="QPushButton" name="info_ONU_BTN_reg_3">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -2252,12 +2252,12 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>????</string>
+                 <string>Информация об Онушке</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="disThisBTN_GPON_ZTE_3">
+               <widget class="QPushButton" name="info_port_ONU_BTN_regist">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -2271,12 +2271,12 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>?????</string>
+                 <string>Инфо портов на ОНУ</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="shundownPortBTN_Alcatel_5">
+               <widget class="QPushButton" name="shundownPortBTN_GPON_ZTE_3">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>

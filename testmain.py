@@ -5,8 +5,8 @@ import netmiko
 device = {
         'device_type': 'zte_zxros_telnet',
         'host': '158',
-        'username': 'admin',
-        'password': 'fufvtvyjy',
+        'username': '****',
+        'password': '****',
     }
 try:
     connection = netmiko.ConnectHandler(**device)

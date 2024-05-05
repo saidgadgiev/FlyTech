@@ -1,18 +1,21 @@
-import paramiko
-import time
+import socket
+import netmiko
 
-client = paramiko.SSHClient()
-client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-client.connect(
-    hostname="10.50.57.1",
-    username="admin",
-    password="fufvtvyjy",
-    look_for_keys=False,
-    allow_agent=False
-)
-ssh = client.invoke_shell()
-ssh.send("dis int br\n")
 
-for res in range(50):
-    print(ssh.recv(30000))
-ssh.close()
+device = {
+        'device_type': 'zte_zxros_telnet',
+        'host': '158',
+        'username': '****',
+        'password': '***',
+    }
+try:
+    connection = netmiko.ConnectHandler(**device)
+    result = connection.send_command('show gpon onu state gpon-olt_1/2/2')
+    connection.disconnect
+    print(result)
+except ValueError:
+    print('Enter ip address')
+except socket.gaierror:
+    print("Не удалось установить TCP-соединение с устройством. \nРаспространенными причинами этой проблемы "
+            "являются:\n1. Неверное имя хоста или IP-адрес.\n2. Неправильный TCP-порт.\n3. Промежуточный "
+            "брандмауэр, блокирующий доступ.\n")

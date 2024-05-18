@@ -23,8 +23,8 @@ class MyWindow(QtWidgets.QMainWindow):
             device = {
             'device_type': 'zte_zxros_telnet',
             'host': self.ip_address(),
-            'username': '*****',
-            'password': '********',
+            'username': 'admin',
+            'password': 'fufvtvyjy',
             }
 
             connection = netmiko.ConnectHandler(**device)
@@ -43,6 +43,9 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.resultEdit.setText('ВВЕДИТЕ IP ADDRESS УСТРОЙСТВА') 
             self.ui.result2Edit.setText('ВВЕДИТЕ IP ADDRESS УСТРОЙСТВА')
         except socket.gaierror:
+            self.ui.resultEdit.setText("Не удалось установить TCP-соединение с устройством. \n Проверьте правильно ли вы ввели IP address устройства ")
+            self.ui.result2Edit.setText("Не удалось установить TCP-соединение с устройством. \n Проверьте правильно ли вы ввели IP address устройства ")
+        except TimeoutError:
             self.ui.resultEdit.setText("Не удалось установить TCP-соединение с устройством. \n Проверьте правильно ли вы ввели IP address устройства ")
             self.ui.result2Edit.setText("Не удалось установить TCP-соединение с устройством. \n Проверьте правильно ли вы ввели IP address устройства ")
 if __name__ == "__main__":

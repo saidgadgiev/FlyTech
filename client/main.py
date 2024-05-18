@@ -23,8 +23,8 @@ class MyWindow(QtWidgets.QMainWindow):
             device = {
             'device_type': 'zte_zxros_telnet',
             'host': self.ip_address(),
-            'username': 'admin',
-            'password': 'fufvtvyjy',
+            'username': '***',
+            'password': '*****',
             }
 
             connection = netmiko.ConnectHandler(**device)
